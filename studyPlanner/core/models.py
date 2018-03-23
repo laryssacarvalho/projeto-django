@@ -24,6 +24,7 @@ class User(models.Model):
 class Class(models.Model):
     name = models.CharField('Nome', max_length=255, null=False)
     idProfessor = models.ForeignKey(User, on_delete=models.CASCADE)
+    idStudent = models.ManyToManyField('students.Student',related_name='Alunos')
     examMod1 = models.DateField('Prova Módulo 1')
     examMod2 = models.DateField('Prova Módulo 2')
     examSub = models.DateField('Prova Substitutiva')
@@ -50,8 +51,8 @@ class Task(models.Model):
     date = models.DateTimeField('Data de Vencimento')
     name = models.CharField('Nome', max_length=255)
     file = models.FileField(upload_to='arquivos', verbose_name='Arquivo', null=True, blank=True)    
-    idClass = models.ForeignKey(Class, null=True, on_delete=models.CASCADE)
-    idStudent = models.ForeignKey('students.Student', null=True, on_delete=models.CASCADE)
+    idClass = models.ForeignKey(Class, null=False, on_delete=models.CASCADE)
+    
     def __str__(self):
         return self.name
     class Meta:
