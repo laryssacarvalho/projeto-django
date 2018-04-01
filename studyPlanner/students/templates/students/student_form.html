@@ -1,4 +1,6 @@
 {% extends "students/header.html" %}
+{% load filters %}
+
 
 {% block content %}
 
@@ -11,52 +13,41 @@
                         <h4 class="title">Editar Perfil</h4>                        
                     </div>
                     <div class="card-content">
-                        <form method="POST">{% csrf_token %}
-                            {{ form.as_p }}
-                            {% comment %} <div class="row"> 
-                                <div class="col-md-4">
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">RA</label>
-                                        <input type="text" disabled class="form-control">
-                                    </div>
-                                </div>                               
-                                <div class="col-md-8">
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">Usuário</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                </div>                                
-                            </div>
-                            <div class="row">                                     
+                        <form method="POST">{% csrf_token %}                            
+                            <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Email</label>
-                                        <input type="email" class="form-control">
+                                        {% comment %} {{ form.email }} {% endcomment %}
+                                        {{ form.email|add_class:'form-control' }}
+                                        {% comment %} <input type="email" class="form-control"> {% endcomment %}
                                     </div>
                                 </div>
-                            </div>
+                            </div>                            
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Nome</label>
-                                        <input type="text" class="form-control">
+                                        {{ form.firstName }}
+                                        {% comment %} <input type="text" class="form-control"> {% endcomment %}
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Sobrenome</label>
-                                        <input type="text" class="form-control">
+                                        {{ form.lastName }}
+                                        {% comment %} <input type="text" class="form-control"> {% endcomment %}
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
+                            {% comment %} <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Senha</label>
                                         <input type="password" class="form-control">
                                     </div>
                                 </div>
-                            </div>   {% endcomment %}
+                            </div> {% endcomment %}
                             <button type="submit" class="btn btn-primary pull-right">Salvar</button>
                             <div class="clearfix"></div>
                         </form>
