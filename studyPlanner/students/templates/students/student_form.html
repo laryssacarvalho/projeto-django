@@ -1,5 +1,5 @@
 {% extends "students/header.html" %}
-{% load filters %}
+{% load myfilters %}
 
 
 {% block content %}
@@ -13,14 +13,12 @@
                         <h4 class="title">Editar Perfil</h4>                        
                     </div>
                     <div class="card-content">
-                        <form method="POST">{% csrf_token %}                            
+                        <form method="POST" action="">{% csrf_token %}                            
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group label-floating">
-                                        <label class="control-label">Email</label>
-                                        {% comment %} {{ form.email }} {% endcomment %}
-                                        {{ form.email|add_class:'form-control' }}
-                                        {% comment %} <input type="email" class="form-control"> {% endcomment %}
+                                        <label class="control-label">Email</label>                                        
+                                        {{ form.email|addclass:'form-control' }}                                        
                                     </div>
                                 </div>
                             </div>                            
@@ -28,15 +26,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Nome</label>
-                                        {{ form.firstName }}
-                                        {% comment %} <input type="text" class="form-control"> {% endcomment %}
+                                        {{ form.firstName|addclass:'form-control' }}                                                                            
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Sobrenome</label>
-                                        {{ form.lastName }}
-                                        {% comment %} <input type="text" class="form-control"> {% endcomment %}
+                                        {{ form.lastName|addclass:'form-control' }}                                        
                                     </div>
                                 </div>
                             </div>

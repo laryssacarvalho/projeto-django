@@ -10,13 +10,6 @@ class Student(User):
         verbose_name='Aluno'
         verbose_name_plural='Alunos'  
 
-#class Class_Student(models.Model):
-#   idStudent = models.ForeignKey(Student, on_delete=models.CASCADE)
-#  idClass = models.ForeignKey(Class, on_delete=models.CASCADE)
-    #notaMod1 = models.FloatField('Nota Módulo 1')
-    #notaMod2 = models.FloatField('Nota Módulo 2')
-    #notaSub = models.FloatField('Nota Substitutiva')    
-
 class Task_Student(models.Model):
     idTask = models.ForeignKey(Task, on_delete=models.CASCADE)
     idStudent = models.ForeignKey(Student, on_delete=models.CASCADE)

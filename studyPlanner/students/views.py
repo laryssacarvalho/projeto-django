@@ -8,7 +8,8 @@ from .models import Student
 
 class StudentUpdate(UpdateView):
     model = Student
-    fields = ['firstName','lastName','email','ra']
+    success_url="/alunos/"
+    fields = ['firstName','lastName','email']
 
 def meuPerfil(request):
     if request.method == 'POST':
