@@ -73,6 +73,9 @@ TEMPLATES = [
     },
 ]
 
+LOGIN_REDIRECT_URL = '/home/'
+
+
 WSGI_APPLICATION = 'studyPlanner.wsgi.application'
 
 

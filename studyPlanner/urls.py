@@ -23,5 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),    
     path('alunos/', include('studyPlanner.students.urls')),   
     path('', include('studyPlanner.core.urls')),
+    path('accounts/',include('django.contrib.auth.urls'))
     #path('', include('studyPlanner.professors.urls', namespace='professors')),    
 ]

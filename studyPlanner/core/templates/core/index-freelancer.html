@@ -424,10 +424,12 @@
                             </div>
                             <div class="error"></div>
                             <div class="form loginBox">
-                                <form method="post" action="/login" accept-charset="UTF-8">
+                                <form method="post" action="/login/ accept-charset="UTF-8">
+                                    {% csrf_token %}
+                                    {{form}}
                                 <input id="email" class="form-control" type="text" placeholder="Email" name="email">
                                 <input id="password" class="form-control" type="password" placeholder="Senha" name="password">
-                                <input class="btn btn-default btn-login" type="button" value="Login" onclick="loginAjax()" style="background-color: purple">
+                                <input class="btn btn-default btn-login"  type="submit" value="Login" style="background-color: purple">
                                 </form>
                             </div>
                          </div>
