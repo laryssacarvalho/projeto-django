@@ -23,7 +23,7 @@ class User(models.Model):
 
 class Class(models.Model):
     name = models.CharField('Nome', max_length=255, null=False)
-    idProfessor = models.ForeignKey(User, on_delete=models.CASCADE)
+    idProfessor = models.ForeignKey('professors.Professor', on_delete=models.CASCADE)
     idStudent = models.ManyToManyField('students.Student',related_name='Alunos')
     examMod1 = models.DateField('Prova Módulo 1')
     examMod2 = models.DateField('Prova Módulo 2')
