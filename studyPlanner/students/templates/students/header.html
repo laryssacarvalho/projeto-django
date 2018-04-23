@@ -38,7 +38,7 @@
             <div class="sidebar-wrapper">
                 <ul class="nav">
                     <li class="{% if nbar == 'inicio' %}active{% endif %}">
-                        <a href="{% url 'index' %}">
+                        <a href="{% url 'home' %}">
                             <i class="material-icons">home</i>
                             <p>Inicio</p>
                         </a>
@@ -68,7 +68,7 @@
                         </a>
                     </li>                    
                     <li>
-                        <a href="./notifications.html">
+                        <a href="{% url 'index' %}">
                             <i class="material-icons text-gray">input</i>
                             <p>Sair</p>
                         </a>

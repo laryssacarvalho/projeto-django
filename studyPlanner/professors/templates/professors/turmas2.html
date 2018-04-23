@@ -1,0 +1,15 @@
+<div>
+    <h1>View de turmas</h1>
+</div>
+
+{% for turma in turmas %}
+    <div>
+        <p>Name: {{ turma.name }}</p>
+        <p>idProfessor: {{turma.idProfessor}}</p>
+        <p>Prova Mod 1: {{turma.examMod1}}</p>     
+        <p>Prova Mod 2: {{turma.examMod2}}</p> 
+        <p>Prova Sub: {{turma.examSub}}</p> 
+        <p>---------------------------------</p>
+    </div>
+{% endfor %}
+
