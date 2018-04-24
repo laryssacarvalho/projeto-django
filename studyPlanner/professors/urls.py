@@ -2,14 +2,15 @@ from django.urls import path
 from .import views
 
 urlpatterns = [
-    path('home', views.home, name='home'),    
-    path('meuPerfil', views.meuPerfil, name='meuPerfil'),
-    path('agenda', views.agenda, name='agenda'),
-    path('editar/<int:pk>/', views.ProfessorUpdate.as_view(), name='professor_update'),
-    path('turmas', views.turmas, name='turmas'),
+    path('professors', views.home, name='home'), 
+    path('Home', views.home, name='Home'),    
+    path('MeuPerfil', views.meuPerfil, name='MeuPerfil'),
+    path('Agenda', views.agenda, name='Agenda'),
+    path('Editar/<int:pk>/', views.ProfessorUpdate.as_view(), name='professor_update'),
+    path('Turmas', views.turmas, name='Turmas'),
     path('', views.sair, name='sair'),
 
-    path('turmas2', views.turmas2, name='turmas2'),
+    #path('turmas2', views.turmas, name='turmas2'),
     path('detalhe/<int:id>/', views.turmaDetail, name='detalhe'),
 
 ]

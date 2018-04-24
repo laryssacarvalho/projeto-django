@@ -5,10 +5,11 @@
 <div class="content">
     <div class="container-fluid">
         <div class="row">
+            {% for turma in turmas %}
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header" data-background-color="purple">
-                        <h4 class="title">Cálculo I</h4>                        
+                        <h4 class="title">{{ turma.name }}</h4>                        
                     </div>
                     <div class="card-content table-responsive"> 
                         <table class="table table-hover">
@@ -21,78 +22,22 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>Calc101</td>
-                                    <td>40</td>
+                                    <td>{{turma.name}}</td>
+                                    <td>{{turma.num}}</td>
                                     <td>C-23</td>
                                     <td>Quarta-feira</td>
                                     <td>19 h</td>
-                                    <td><button data-background-color="purple">Ver Mais</button></td>
+                                    <td><a href="{% url 'detalhe' id=turma.id %}">
+                                        <button data-background-color="purple">Ver Mais</button>
+                                        </a>
+                                    </td>
                                 </tr>                                
                             </tbody>
                         </table>                       
                     </div>
                 </div>
-            </div>            
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header" data-background-color="blue">
-                        <h4 class="title">Física I</h4>                        
-                    </div>
-                    <div class="card-content table-responsive"> 
-                        <table class="table table-hover">
-                            <thead class="text-warning">
-                                <th>Código</th>
-                                <th>Quantida de Alunos</th>
-                                <th>Sala</th>
-                                <th>Dia da semana</th>
-                                <th>Horário</th>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Fisi101</td>
-                                    <td>42</td>
-                                    <td>L-33</td>
-                                    <td>Segunda-feira</td>
-                                    <td>19 h</td>
-                                    <td><button data-background-color="blue">Ver Mais</button></td>
-                                </tr>                                
-                            </tbody>
-                        </table>                       
-                    </div>
-                </div>
-            </div>            
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header" data-background-color="green">
-                        <h4 class="title">Química</h4>                        
-                    </div>
-                    <div class="card-content table-responsive"> 
-                        <table class="table table-hover">
-                            <thead class="text-warning">
-                                <th>Código</th>
-                                <th>Quantida de Alunos</th>
-                                <th>Sala</th>
-                                <th>Dia da semana</th>
-                                <th>Horário</th>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Quim101</td>
-                                    <td>28</td>
-                                    <td>B-12</td>
-                                    <td>Quinta-feira</td>
-                                    <td>21 h</td>
-                                    <td><button data-background-color="green">Ver Mais</button></td>
-                                </tr>                                
-                            </tbody>
-                        </table>                       
-                    </div>
-                </div>
-            </div>            
+            </div>
+            {% endfor %}         
         </div>
     </div>
 </div>

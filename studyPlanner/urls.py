@@ -24,5 +24,4 @@ urlpatterns = [
     path('professors/', include('studyPlanner.professors.urls')),   
     path('alunos/', include('studyPlanner.students.urls')),   
     path('', include('studyPlanner.core.urls')),
-    #path('', include('studyPlanner.professors.urls', namespace='professors')),    
 ]

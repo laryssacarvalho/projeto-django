@@ -6,8 +6,8 @@ class professorForm(forms.ModelForm):
     lastName = forms.CharField(label='Sobrenome')
     username = forms.CharField(label='Usuário')    
     email = forms.EmailField(label='Email')
-    #tipo = forms.TypedChoiceField(choices=Professor.TIPOS, coerce=str) 
+    #tipo = forms.TypedChoiceField(choices=Professor.TIPOS.choices(), coerce=str) 
     class Meta:
         model = Professor
         fields = ('firstName', 'lastName', 'username', 'email')
-        #fields = ('firstName', 'lastName', 'username', 'email','tipe')
+        #fields = ('firstName', 'lastName', 'username', 'email','tipo')

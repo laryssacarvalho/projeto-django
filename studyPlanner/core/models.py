@@ -22,6 +22,7 @@ class User(models.Model):
 
 
 class Class(models.Model):
+    #teremos os campos Codigo, sala, dia da semana e horario?
     name = models.CharField('Nome', max_length=255, null=False)
     idProfessor = models.ForeignKey('professors.Professor', on_delete=models.CASCADE)
     idStudent = models.ManyToManyField('students.Student',related_name='Alunos')

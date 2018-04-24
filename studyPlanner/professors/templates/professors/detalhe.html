@@ -1,10 +1,14 @@
 <div>
-    <h1>View de detalhe da turma: </h1>
+    <h1>View de detalhe da turma: {{turma}}</h1>
 </div>
 
 {% for aluno in alunos %}
     <div>
-        <p>Aluno: {{ aluno}}</p>
+        <p>Aluno: {{ aluno }} {{aluno.lastName}}</p>
+        <p>RA: {{ aluno.ra }}</p>
+        <p>Email: {{ aluno.email }}</p>
+        <p>---------------------------------------</p>
     </div>
 {% endfor %}
+<p>Total de Alunos: {{ totalAlunos }}</p>
 
