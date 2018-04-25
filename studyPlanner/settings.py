@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'studyPlanner.students',
     'studyPlanner.professors',    
     'studyPlanner.core',
+    'django_pdb'
 ]
 
 MIDDLEWARE = [
@@ -50,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_pdb.middleware.PdbMiddleware'
 ]
 
 ROOT_URLCONF = 'studyPlanner.urls'
@@ -66,6 +68,9 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            'libraries':{
+                'myfilters': 'studyPlanner.students.templatetags.myfilters',
+            }
         },
     },
 ]
