@@ -11,15 +11,15 @@ class Student(User):
         verbose_name_plural='Alunos'  
 
 class Task_Student(models.Model):
-    idTask = models.ForeignKey(Task, on_delete=models.CASCADE)
-    idStudent = models.ForeignKey(Student, on_delete=models.CASCADE)
+    task = models.ForeignKey(Task, on_delete=models.CASCADE, related_name="tasks_students")
+    student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name="tasks_students")
     file = models.CharField('Arquivo', max_length=255, null=True, blank=True)
     grade = models.FloatField('Nota')    
     hours = models.IntegerField('Horas')
 
 class Student_Exam(models.Model):
-    idStudent = models.ForeignKey(Student, on_delete=models.CASCADE)
-    idClass = models.ForeignKey(Class, on_delete=models.CASCADE)
+    student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name="students_exams")
+    examClass = models.ForeignKey(Class, on_delete=models.CASCADE, related_name="students_exams")
     gradeMod1 = models.FloatField('Nota Módulo 1')
     gradeMod2 = models.FloatField('Nota Módulo 2')
     gradeSub = models.FloatField('Nota Substitutiva')  
