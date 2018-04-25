@@ -8,6 +8,7 @@ urlpatterns = [
     path('Agenda', views.agenda, name='Agenda'),
     path('Editar/<int:pk>/', views.ProfessorUpdate.as_view(), name='professor_update'),
     path('Turmas', views.turmas, name='Turmas'),
+    path('Entregas', views.entregas, name='Entregas'),
     path('', views.sair, name='sair'),
 
     #path('turmas2', views.turmas, name='turmas2'),

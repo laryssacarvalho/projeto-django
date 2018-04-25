@@ -55,7 +55,13 @@
                             <i class="material-icons">class</i>
                             <p>Turmas</p>
                         </a>
-                    </li>                    
+                    </li> 
+                    <li class="{% if nbar == 'entregas' %}active{% endif %}">
+                        <a href="{% url 'Entregas' %}">
+                            <i class="material-icons">list</i>
+                            <p>Entregas</p>
+                        </a>
+                    </li>                     
                     <li>
                         <a href="{% url 'index' %}">
                             <i class="material-icons text-gray">input</i>

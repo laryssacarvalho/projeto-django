@@ -93,6 +93,14 @@ def agenda2(request):
     } 
     return render(request, 'professors/turmas2.html', context)
 
+def entregas(request):
+    tasks = Task.objects.all()
+    context = {
+        'nbar' : 'entregas',
+        'tasks' : tasks
+    }
+    return render(request, 'students/entregas.html', context)
+
 #Dashboard-----------------------
 # def getTasks(id)
 #     classes = Class.objects.filter(idProfessor=profId)
