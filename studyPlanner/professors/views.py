@@ -62,7 +62,7 @@ def turmas(request):
 
 def turmaDetail(request, id):
     turma = Class.objects.get(id = id)
-    alunos = turma.idStudent.all()
+    alunos = Class.objects.filter(id = id).get().students.all()
     num = 0
     num = numAlunos(id)
     context = {
@@ -73,9 +73,8 @@ def turmaDetail(request, id):
     return render(request, 'professors/detalhe.html', context)
 
 def numAlunos(id):
-    turma = Class.objects.get(id = id)
-    alunos = turma.idStudent.all()
-    return len(alunos)
+    alunos = Class.objects.filter(id = id).get().students
+    return alunos.count()
 
 def meuPerfil2(request):
     me = Class.objects.all()
@@ -94,12 +93,16 @@ def agenda2(request):
     return render(request, 'professors/turmas2.html', context)
 
 def entregas(request):
-    tasks = Task.objects.all()
+    turmas = Class.objects.all()
+    #turmas = Class.objects.filter(idProfessor=profId)    
+    for t in turmas:
+        t.taskList = []
+        t.taskList = Class.objects.filter(id = t.id).get().tasks.all()
     context = {
-        'nbar' : 'entregas',
-        'tasks' : tasks
-    }
-    return render(request, 'students/entregas.html', context)
+        'turmas': turmas,
+        'nbar' : 'entregas'
+        }
+    return render(request, 'professors/entregas.html', context)
 
 #Dashboard-----------------------
 # def getTasks(id)

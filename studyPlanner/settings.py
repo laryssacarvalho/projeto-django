@@ -39,8 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'studyPlanner.students',
     'studyPlanner.professors',    
-    'studyPlanner.core',
-    'django_pdb'
+    'studyPlanner.core'
+    #'django_pdb'
 ]
 
 MIDDLEWARE = [
@@ -50,8 +50,8 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django_pdb.middleware.PdbMiddleware'
+    'django.middleware.clickjacking.XFrameOptionsMiddleware'
+    #'django_pdb.middleware.PdbMiddleware'
 ]
 
 ROOT_URLCONF = 'studyPlanner.urls'

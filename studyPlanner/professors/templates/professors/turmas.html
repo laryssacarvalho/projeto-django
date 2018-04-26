@@ -22,11 +22,11 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>{{turma.name}}</td>
+                                    <td>{{turma.code}}</td>
                                     <td>{{turma.num}}</td>
-                                    <td>C-23</td>
-                                    <td>Quarta-feira</td>
-                                    <td>19 h</td>
+                                    <td>{{turma.room}}</td>
+                                    <td>{{turma.weekDay}}-FEIRA</td>
+                                    <td>{{turma.horario}}h</td>
                                     <td><a href="{% url 'detalhe' id=turma.id %}">
                                         <button data-background-color="purple">Ver Mais</button>
                                         </a>
