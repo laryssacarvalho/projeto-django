@@ -33,18 +33,18 @@
         Tip 2: you can also add an image using data-image tag
     -->
             <div class="logo">
-                <a href="{% url 'index' %}"><img src="{% static 'img/logo1.png' %}" width="245px"/></a>                
+                <a href=""><img src="{% static 'img/logo1.png' %}" width="245px"/></a>                
             </div>
             <div class="sidebar-wrapper">
                 <ul class="nav">
                     <li class="{% if nbar == 'inicio' %}active{% endif %}">
-                        <a href="{% url 'index' %}">
+                        <a href="">
                             <i class="material-icons">home</i>
                             <p>Inicio</p>
                         </a>
                     </li>
                     <li class="{% if nbar == 'perfil' %}active{% endif %}">
-                        <a href="{% url '' %}">
+                        <a href="{% url 'user_update' pk=1 %}">
                             <i class="material-icons">person</i>
                             <p>Perfil</p>
                         </a>

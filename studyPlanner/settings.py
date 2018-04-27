@@ -129,3 +129,10 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'studyPlanner', 'media')
+
+# Auth
+LOGIN_URL = '/conta/entrar/'
+LOGIN_REDIRECT_URL = '/alunos/'
+LOGOUT_REDIRECT_URL = '/core/'
+LOGOUT_URL = '/core/'
+AUTH_USER_MODEL = 'core.User'
