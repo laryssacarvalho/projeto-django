@@ -13,8 +13,8 @@ def agenda(request):
 def notas(request):
     classes = Task.objects.filter().all()
     context = {
-        'nbar' : 'notas',
-        'grades' : grades
+        'nbar' : 'notas'
+        # 'grades' : grades
     }
     return render(request, 'students/notas.html', context)
 
@@ -25,13 +25,10 @@ def entregas(request):
     return render(request, 'students/entregas.html', context)
 
 def home(request):
-    #allTasks = Task.objects.filter(student_id=1).count()
-    #allTasks = Student.objects.filter(id=2)
-    allTasks = len(list(Task.objects.raw('SELECT * FROM core_task')))    
-    student = Student.objects.filter(user_ptr_id=2).get()
+    # student = Student.objects.filter(user_ptr_id=2).get()
     context = {
-        'nbar' : 'inicio',
-        'cr' : student.cr
+        'nbar' : 'inicio'
+        # 'cr' : student.cr
     }
     return render(request, 'students/home.html', context)
     
