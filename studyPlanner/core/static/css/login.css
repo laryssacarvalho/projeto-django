@@ -5,6 +5,12 @@ html,body{
     height: 100%;
 }
 
+.btn-twitter{
+background:#08a0e9;
+width:200px;
+color:white;
+}
+
 .login-container{
     position: relative;
     width: 300px;

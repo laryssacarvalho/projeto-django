@@ -21,3 +21,6 @@ class UserUpdate(UpdateView):
             header = "professors/header.html"            
         context['header'] = header
         return context
+
+def home(request):
+    return render(request,'core/home.html')
