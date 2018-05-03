@@ -1,9 +1,9 @@
 from django.db import models
-from studyPlanner.core.models import User
+from studyPlanner.core.models import Person
 from studyPlanner.core.models import Class
 from studyPlanner.core.models import Task
 
-class Student(User):
+class Student(Person):
     cr = models.FloatField('CR', null=True, blank=True)
     
     class Meta:

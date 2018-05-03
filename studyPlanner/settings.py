@@ -39,9 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'studyPlanner.students',
     'studyPlanner.professors',    
-    'studyPlanner.core',
-    'django_pdb'
-]
+    'studyPlanner.core']
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -50,9 +48,7 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django_pdb.middleware.PdbMiddleware'
-]
+    'django.middleware.clickjacking.XFrameOptionsMiddleware']
 
 ROOT_URLCONF = 'studyPlanner.urls'
 
@@ -135,4 +131,4 @@ LOGIN_URL = '/conta/entrar/'
 LOGIN_REDIRECT_URL = '/alunos/'
 LOGOUT_REDIRECT_URL = ''
 LOGOUT_URL = '/core/'
-AUTH_USER_MODEL = 'core.User'
+# AUTH_USER_MODEL = 'core.User'

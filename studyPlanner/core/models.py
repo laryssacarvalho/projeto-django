@@ -1,33 +1,27 @@
 from django.db import models
-from django.contrib.auth.models import (AbstractBaseUser, PermissionsMixin, UserManager)
-
-class User(AbstractBaseUser, PermissionsMixin):    
+from django.contrib.auth.models import User
+class Person(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)  
     firstName = models.CharField('Nome', max_length=255, null=False)
     lastName = models.CharField('Sobrenome', max_length=255, null=False)    
-    username = models.CharField('Usuário', max_length=30, unique=True)
     email = models.EmailField('Email',unique=True, null=False)
     ra = models.CharField('RA',max_length=20,null=False, unique=True)
-    password = models.CharField('Senha', null=False, max_length=55)
     is_active = models.BooleanField('Está ativo?', blank=True, default=True)
     is_staff = models.BooleanField('É da equipe?', blank=True, default=False)
     date_joined = models.DateTimeField('Data de Entrada', auto_now_add=True)
-    objects = UserManager()
-    
-    USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = ['email']
 
     def __str__(self):
         return self.firstName
 
-    def get_short_name(self):
-        return self.username
+    # def get_short_name(self):
+    #     return self.user.usernam
 
     def get_full_name(self):
         return str(self)
         
     class Meta:
-        verbose_name='Usuário'
-        verbose_name_plural = 'Usuários'
+        verbose_name='Pessoa'
+        verbose_name_plural = 'Pessoas'
         ordering = ['firstName','lastName']
 
 

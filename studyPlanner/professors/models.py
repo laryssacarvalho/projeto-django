@@ -1,10 +1,10 @@
 from django.db import models
-from studyPlanner.core.models import User
+from studyPlanner.core.models import Person
 
 # Create your models here.
 
 
-class Professor(User):
+class Professor(Person):
     TIPOS = (
         ('B', 'Bacharel'),        
         ('D', 'Doutor'),
