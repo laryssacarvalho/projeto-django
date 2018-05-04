@@ -7,6 +7,7 @@ from .models import Professor
 from studyPlanner.core.models import Class
 from studyPlanner.core.models import User
 from studyPlanner.core.models import Task
+from django.db.models import Avg
 
 
 # Create your views here.
@@ -22,17 +23,27 @@ def agenda(request):
     return render(request, 'professors/agenda.html', {'nbar' : 'agenda'})
 
 def home(request):
-    #tasks = Task.objects.filter()
-    # context = {
-    #     'tarefas': getTasks(id),
-    #     'tarefasEntrgues': alunos,
-    #     'totalAlunos': getAverageCR(id)
-    # } 
-    return render(request, 'professors/home.html', {'nbar' : 'inicio'})
-    #return render(request, 'professors/home.html', {'nbar' : 'inicio'}, context)
+    id = 1 #professorId
+    context = {
+        'cr': 0.0,
+    } 
+    #return render(request, 'professors/home.html', {'nbar' : 'inicio'})
+    return render(request, 'professors/home.html', {'nbar' : 'inicio'}, context)
 
-# def turmas(request):
-#     return render(request, 'professors/turmas.html', {'nbar' : 'turmas'})
+def getAverageCR(id):
+    #turmas = Class.objects.filter(idProfessor=profId)
+    #alunos = turmas.objects.filter(id = id).get().students
+    turmas = Class.objects.all()
+    cr = 0.0
+    avg = 0.0
+    for t in turmas:
+        alunos = Class.objects.filter(id = t.id).get().students.all()
+        alunos.aggregate(avg = Avg('cr'))
+        cr = cr + avg
+        #for al in t:
+            #alunos = Class.objects.filter(id = al.id).sum().students.cr.all()
+            #cr += sum(alunos.cr)/len(alunos)
+    return (cr)
 
 def sair(request):
     return render(request, 'professors/home.html', {'nbar' : 'inicio'})
@@ -40,12 +51,6 @@ def sair(request):
 class ProfessorUpdate(UpdateView):
     model = Professor
     fields = ['firstName','lastName','email','ra','tipo']
-
-# def turma_list(request):
-#     turmas = Class.objects()
-#     print(turmas)
-#     return render(request, 'professors/turmas.html', {'nbar' : 'turmas'})
-
     
 def turmas(request):
     turmas = Class.objects.all()
@@ -103,12 +108,3 @@ def entregas(request):
         'nbar' : 'entregas'
         }
     return render(request, 'professors/entregas.html', context)
-
-#Dashboard-----------------------
-# def getTasks(id)
-#     classes = Class.objects.filter(idProfessor=profId)
-#     tasks = Class.objects.filter(idClass in classes)
-#     return len(tasks)
-
-# def getDeliveredTasks(id)
-#     #como saber se foram entrgues?
