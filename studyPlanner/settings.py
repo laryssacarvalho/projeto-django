@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'studyPlanner.students',
     'studyPlanner.professors',    
-    'studyPlanner.core'
+    'studyPlanner.core',
+    'rest_framework'
     #'django_pdb'
 ]
 
