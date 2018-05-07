@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'studyPlanner.students',
     'studyPlanner.professors',    
     'studyPlanner.core',
+    'pyrebase'
     # 'social_django'
     ]
 
@@ -82,7 +83,7 @@ AUTHENTICATION_BACKENDS = (
     # 'social_core.backends.google.GoogleOAuth2',
     # 'social_core.backends.google.GoogleOAuth',
     # 'social_core.backends.google.GoogleOpenId',
-    'django.contrib.auth.backends.ModelBackend',
+    # 'django.contrib.auth.backends.ModelBackend',
 )
 
 WSGI_APPLICATION = 'studyPlanner.wsgi.application'

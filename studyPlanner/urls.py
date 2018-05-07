@@ -20,11 +20,16 @@ from django.shortcuts import redirect
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
+from studyPlanner.core.views import signIn
+from studyPlanner.core.views import postsign
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),    
     path('alunos/', include('studyPlanner.students.urls')),   
     path('', include('studyPlanner.core.urls')),
+    url(r'^$',signIn),
+    url(r'^postsign/',postsign)
     # url(r'^oauth/', include('social_django.urls', namespace='social')),
     # url(r'auth-social/',include('social_django.urls',namespace='social')) 
     #path('', include('studyPlanner.professors.urls', namespace='professors')),    

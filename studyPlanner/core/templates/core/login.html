@@ -14,20 +14,21 @@
                     <div id="output"></div>
                     <div class="avatar"><img src="{% static 'img/logo1.png' %}" width="100%"/></div>
                     <div class="form-box">
-                            <form action="" method="post">
+                            <form action="/postsign/" method="post">
                                     {% csrf_token %}
-                                    {{ form.non_fields_errors }}
+                                    <input type=text name="email"></input>
+                                    <input type="password" name="pass"></input>
+
+                                    <!-- {{ form.non_fields_errors }}
                                     {% for field in form %}
                                         {{ field.label_tag }}
                                         {{ field }}
                                         {{ field.errors }}                                
-                                    {% endfor %}
+                                    {% endfor %} -->
                                     <button class="btn btn-info btn-block login" style="background-color: purple" type="submit">Login</button>
                                 </form>
                     </div>
                     <br/>
-                    <a href="{% url 'social:begin' 'facebook' %}" class="facebook_button">Login com Facebook</a>
-                    <!-- <a class="btn-twitter" href="{% url 'social:begin' 'twitter' %}">Login com Twitter</a> -->
                 </div>
                 
         </div>
