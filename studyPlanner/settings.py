@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'studyPlanner.students',
     'studyPlanner.professors',    
     'studyPlanner.core',
-    'social_django'
+    # 'social_django'
     ]
 
 MIDDLEWARE = [
@@ -50,8 +50,8 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'social_django.middleware.SocialAuthExceptionMiddleware']
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',]
+    # 'social_django.middleware.SocialAuthExceptionMiddleware'
 
 ROOT_URLCONF = 'studyPlanner.urls'
 
@@ -66,8 +66,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'social_django.context_processors.backends',
-                'social_django.context_processors.login_redirect',
+                # 'social_django.context_processors.backends',
+                # 'social_django.context_processors.login_redirect',
             ],
             'libraries':{
                 'myfilters': 'studyPlanner.students.templatetags.myfilters',
@@ -77,8 +77,11 @@ TEMPLATES = [
 ]
 
 AUTHENTICATION_BACKENDS = (
-    'social_core.backends.twitter.TwitterOAuth',
-    'social_core.backends.facebook.FacebookOAuth2',
+    # 'social_core.backends.twitter.TwitterOAuth',
+    # 'social_core.backends.facebook.FacebookOAuth2',
+    # 'social_core.backends.google.GoogleOAuth2',
+    # 'social_core.backends.google.GoogleOAuth',
+    # 'social_core.backends.google.GoogleOpenId',
     'django.contrib.auth.backends.ModelBackend',
 )
 
@@ -144,5 +147,9 @@ LOGOUT_REDIRECT_URL = ''
 LOGOUT_URL = '/core/'
 # AUTH_USER_MODEL = 'core.User'
 
-SOCIAL_AUTH_TWITTER_KEY = 'TaWqUme8ANODPOxJa3gqpRMyD'
-SOCIAL_AUTH_TWITTER_SECRET = 'wuSF1ntEjOMbPj7I3vHn4NSQjcihXXdto7B2v5hJLz32tStWJr'
+# SOCIAL_AUTH_TWITTER_KEY = 'TaWqUme8ANODPOxJa3gqpRMyD'
+# SOCIAL_AUTH_TWITTER_SECRET = 'wuSF1ntEjOMbPj7I3vHn4NSQjcihXXdto7B2v5hJLz32tStWJr'
+
+# SOCIAL_AUTH_FACEBOOK_KEY = '441426882981314'  # App ID
+# SOCIAL_AUTH_FACEBOOK_SECRET = 'ed82ccc2c6e7f5930a4b3eb0c26a0a7b'  # App Secret
+# SOCIAL_AUTH_FACEBOOK_SCOPE={'email'}

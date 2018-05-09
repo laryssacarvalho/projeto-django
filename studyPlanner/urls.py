@@ -25,6 +25,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),    
     path('alunos/', include('studyPlanner.students.urls')),   
     path('', include('studyPlanner.core.urls')),
-    url(r'^oauth/', include('social_django.urls', namespace='social')),
+    # url(r'^oauth/', include('social_django.urls', namespace='social')),
+    # url(r'auth-social/',include('social_django.urls',namespace='social')) 
     #path('', include('studyPlanner.professors.urls', namespace='professors')),    
 ]
