@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+    <head>        
+    </head>
+    <body>
+        {{ user.get_full_name }}
+        <ul>
+            <li>Username: {{ user.username }}</li>
+            <li>RA: {{ user.person.ra }}</li>            
+        </ul>       
+    </body>
+</html>

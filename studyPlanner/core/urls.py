@@ -7,9 +7,10 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views as viewsDjango
 
-urlpatterns = [    
-    path('', views.index, name='index'), 
-    path('editar/<int:pk>/', views.UserUpdate.as_view(), name='user_update'),
-    path('entrar/', viewsDjango.login, {'template_name':'core/login.html'}, name='login')
-    
+urlpatterns = [
+    path('', viewsDjango.login, {'template_name':'core/login.html'}, name='login'),    
+    path('home', views.home, name='home'),
+    path('user_profile/', views.user_profile),
+    path('user_form/', views.create_profile, name='editar'),
+    path('logout', viewsDjango.logout, {'next_page' : 'login'}, name='logout')
 ]

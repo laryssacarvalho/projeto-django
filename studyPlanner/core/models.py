@@ -1,29 +1,35 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.dispatch import receiver
+from django.db.models.signals import post_save
+
 class Person(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)  
-    firstName = models.CharField('Nome', max_length=255, null=False)
-    lastName = models.CharField('Sobrenome', max_length=255, null=False)    
-    email = models.EmailField('Email',unique=True, null=False)
-    ra = models.CharField('RA',max_length=20,null=False, unique=True)
-    is_active = models.BooleanField('Está ativo?', blank=True, default=True)
-    is_staff = models.BooleanField('É da equipe?', blank=True, default=False)
-    date_joined = models.DateTimeField('Data de Entrada', auto_now_add=True)
-
+    TIPO = (
+        ('S', 'Aluno'),
+        ('P', 'Professor')        
+    )
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    ra = models.CharField('RA',max_length=20,null=False)    
+    tipo = models.CharField('Tipo de Usuário', max_length=10, choices=TIPO, default='S')    
+    
     def __str__(self):
-        return self.firstName
-
-    # def get_short_name(self):
-    #     return self.user.usernam
+        return self.user.username
 
     def get_full_name(self):
         return str(self)
-        
-    class Meta:
-        verbose_name='Pessoa'
-        verbose_name_plural = 'Pessoas'
-        ordering = ['firstName','lastName']
+    
+    @receiver(post_save, sender=User)
+    def create_user_person(sender, instance, created, **kwargs):
+        if created:
+            Person.objects.create(user=instance)
 
+    @receiver(post_save, sender=User)
+    def save_user_person(sender, instance, **kwargs):
+        instance.person.save()
+
+    class Meta:
+        verbose_name = 'Pessoa'
+        verbose_name_plural = 'Pessoas'
 
 class Class(models.Model):
     SEMANA = (
@@ -35,8 +41,8 @@ class Class(models.Model):
         ('SABADO', 'Sábado')
     )
     name = models.CharField('Nome', max_length=255, null=False)
-    professor = models.ForeignKey('professors.Professor', on_delete=models.CASCADE, related_name="classes")
-    students = models.ManyToManyField('students.Student',related_name='classes')
+    professor = models.ForeignKey(Person, on_delete=models.CASCADE, related_name="classes_professor")
+    students = models.ManyToManyField(Person,related_name='classes_student')
     examMod1 = models.DateField('Prova Módulo 1')
     examMod2 = models.DateField('Prova Módulo 2')
     examSub = models.DateField('Prova Substitutiva')

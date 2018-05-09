@@ -11,8 +11,16 @@
                         <h4 class="title">Editar Perfil</h4>                        
                     </div>
                     <div class="card-content">
-                        <form method="POST" action="">{% csrf_token %}                            
+                        <form method="POST" action="">{% csrf_token %}
                             <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group label-floating">
+                                        {{ user_form.as_p }}
+                                        {{ person_form.as_p }}
+                                    </div>
+                                </div>
+                            </div>
+                            {% comment %} <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Email</label>                                        
@@ -33,7 +41,7 @@
                                         {{ form.lastName|addclass:'form-control' }}                                        
                                     </div>
                                 </div>
-                            </div>
+                            </div> {% endcomment %}
                             {% comment %} <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group label-floating">
