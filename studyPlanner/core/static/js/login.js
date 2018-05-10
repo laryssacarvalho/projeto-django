@@ -1,3 +1,34 @@
+ // Initialize Firebase
+ var config = {
+    apiKey: "AIzaSyBBE__151mZb7-Dwm_YXlAgfVDhU2vcoUM",
+    authDomain: "study-planner-app.firebaseapp.com",
+    databaseURL: "https://study-planner-app.firebaseio.com",
+    projectId: "study-planner-app",
+    storageBucket: "study-planner-app.appspot.com",
+    messagingSenderId: "455361032393"
+  };
+
+  firebase.initializeApp(config);
+
+  function loginWithGoogle(){
+      console.log("eaijoia")
+    var provider = new firebase.auth.GoogleAuthProvider();
+    // provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+
+    firebase.auth().signInWithPopup(provider).then(function(result) {
+        var token = result.credential.accessToken;
+        var user = result.user;
+        alert("Logou!")
+      }).catch(function(error) {
+        alert("Não logou!")
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        var email = error.email;
+        var credential = error.credential;
+      });
+
+  }
+  
 $(function(){
 var textfield = $("input[name=user]");
             $('button[type="submit"]').click(function(e) {
