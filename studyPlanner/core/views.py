@@ -4,6 +4,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.http import HttpResponse
 from django.core.exceptions import ObjectDoesNotExist
 from django.urls import reverse_lazy
+from django.contrib import auth
 import pyrebase
 
 config = {
@@ -17,7 +18,7 @@ config = {
 
 firebase = pyrebase.initialize_app(config)
 
-auth = firebase.auth()
+authe = firebase.auth()
 
 def signIn(request):
     return render(request,'login.html')
@@ -25,10 +26,18 @@ def signIn(request):
 def postsign(request):
     email = request.POST.get('email')
     passw = request.POST.get('pass')
-    user = auth.sign_in_with_email_and_password(email,passw)
-    # //print(user.email)
-    return render(request,'core/welcome.html')
-    # return render(request,'welcome.html',{"e":email})
+    try:
+        us = authe.sign_in_with_email_and_password(email,passw)
+        session_id = us['idToken']
+        request.session['uid']=str(session_id)
+        return render(request,'core/welcome.html',{"e":email})
+    except:
+        message = "Credenciais Inválidas."
+        return render(request,'core/login.html',{"msg":message})
+
+def logout(request):
+    auth.logout(request)
+    return render(request,"core/login.html")
 
 def index(request):
     return render(request, 'core/index-agency.html', {'nbar' : 'inicio'})    

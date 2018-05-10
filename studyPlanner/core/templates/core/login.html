@@ -18,7 +18,7 @@
                                     {% csrf_token %}
                                     <input type=text name="email"></input>
                                     <input type="password" name="pass"></input>
-
+                                    <p style="font-weight: bold;">{{msg}}</p>
                                     <!-- {{ form.non_fields_errors }}
                                     {% for field in form %}
                                         {{ field.label_tag }}

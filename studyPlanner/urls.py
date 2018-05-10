@@ -22,6 +22,7 @@ from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
 from studyPlanner.core.views import signIn
 from studyPlanner.core.views import postsign
+from studyPlanner.core.views import logout
 
 
 urlpatterns = [
@@ -29,7 +30,8 @@ urlpatterns = [
     path('alunos/', include('studyPlanner.students.urls')),   
     path('', include('studyPlanner.core.urls')),
     url(r'^$',signIn),
-    url(r'^postsign/',postsign)
+    url(r'^postsign/',postsign),
+    url(r'^logout/',logout)
     # url(r'^oauth/', include('social_django.urls', namespace='social')),
     # url(r'auth-social/',include('social_django.urls',namespace='social')) 
     #path('', include('studyPlanner.professors.urls', namespace='professors')),    
