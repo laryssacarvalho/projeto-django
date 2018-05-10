@@ -40,8 +40,10 @@ INSTALLED_APPS = [
     'studyPlanner.students',
     'studyPlanner.professors',    
     'studyPlanner.core',
-    'social_django'
-    ]
+    'social_django',
+    'rest_framework'
+    #'django_pdb'
+]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -138,7 +140,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'studyPlanner', 'media')
 
 # Auth
-LOGIN_URL = '/conta/entrar/'
 LOGIN_REDIRECT_URL = '/home'
 LOGOUT_REDIRECT_URL = ''
 LOGOUT_URL = '/'

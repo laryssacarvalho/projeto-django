@@ -33,7 +33,7 @@
             <div class="sidebar-wrapper">
                 <ul class="nav">
                     <li class="{% if nbar == 'inicio' %}active{% endif %}">
-                        <a href="">
+                        <a href="{% url 'home' %}">
                             <i class="material-icons">home</i>
                             <p>Inicio</p>
                         </a>
@@ -55,7 +55,13 @@
                             <i class="material-icons">class</i>
                             <p>Turmas</p>
                         </a>
-                    </li>                    
+                    </li> 
+                    {% comment %} <li class="{% if nbar == 'entregas' %}active{% endif %}">
+                        <a href="{% url 'Entregas' %}">
+                            <i class="material-icons">list</i>
+                            <p>Entregas</p>
+                        </a>
+                    </li>                      {% endcomment %}
                     <li>
                         <a href="{% url 'logout' %}">
                             <i class="material-icons text-gray">input</i>
