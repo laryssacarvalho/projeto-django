@@ -11,15 +11,14 @@
   firebase.initializeApp(config);
 
   function loginWithGoogle(){
-      console.log("eaijoia")
     var provider = new firebase.auth.GoogleAuthProvider();
     // provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
 
     firebase.auth().signInWithPopup(provider).then(function(result) {
         var token = result.credential.accessToken;
         var user = result.user;
-        alert("Logou!")
-      }).catch(function(error) {
+        
+    }).catch(function(error) {
         alert("Não logou!")
         var errorCode = error.code;
         var errorMessage = error.message;
@@ -28,7 +27,20 @@
       });
 
   }
-  
+
+  function loginWithFacebook(){
+    var provider = new firebase.auth.FacebookAuthProvider();
+    firebase.auth().signInWithPopup(provider).then(function(result) {
+        var token = result.credential.accessToken;
+        var user = result.user;
+      }).catch(function(error) {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        var email = error.email;
+        var credential = error.credential;
+      });
+  }
+
 $(function(){
 var textfield = $("input[name=user]");
             $('button[type="submit"]').click(function(e) {

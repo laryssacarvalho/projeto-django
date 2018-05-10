@@ -5,36 +5,56 @@ html,body{
     height: 100%;
 }
 
-.btn-twitter{
-background:#08a0e9;
-width:200px;
-color:white;
+#img-button
+{
+    width:30px;
+    height:30px; 
+    float:left;
+    /* border:2px solid rgb(200,74,50);
+    border-radius:3px;
+    margin-right:15px;  */
+
+
 }
 
-.facebook_button {
-    display: inline-block;
+#btnGoogleLogin{
+background-color:rgba(223,74,50,1);
+border-radius:6px;
+border: 2px solid rgb(205,74,50);
+width:220px;
+}
 
-    background: #627aac url(facebook_small.png) left no-repeat;
+#btnFacebookLogin{
+    background-color:rgba(58,85,159,1);
+    border-radius:6px;
+    border: 2px solid rgb(80,94,150);
+    width:220px;
 
-    border-top: 1px solid #29447e;
-    border-right: 1px solid #29447e;
-    border-bottom: 1px solid #1a356e;
-    border-left: none;
+    }
 
-    height: 22px;
+.social:hover{
+    opacity:0.85;
+}
 
-    padding-right: 7px;
-    padding-left: 29px;
+.social img{
+    width:30px;
+    height:30px;
+    background-size:30px 30px;
+    background-repeat: no-repeat;
+    margin-left:-10px;
+}
 
+
+
+.social span{
+    margin-top:2px;
+    text-align: center;
+    display:inline-block;
+    vertical-align: middle;
+    color:white;
     font-weight: bold;
-    font-size: 14px;
-    color: white;
-    text-decoration: none;
-    font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
-    line-height: 22px;
-
-    cursor: pointer;
-
+    margin-right:15px; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .login-container{
