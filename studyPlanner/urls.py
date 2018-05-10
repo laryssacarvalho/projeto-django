@@ -31,7 +31,7 @@ urlpatterns = [
     path('', include('studyPlanner.core.urls')),
     url(r'^$',signIn),
     url(r'^postsign/',postsign),
-    url(r'^logout/',logout)
+    url(r'^logout/',logout,name="log")
     # url(r'^oauth/', include('social_django.urls', namespace='social')),
     # url(r'auth-social/',include('social_django.urls',namespace='social')) 
     #path('', include('studyPlanner.professors.urls', namespace='professors')),    

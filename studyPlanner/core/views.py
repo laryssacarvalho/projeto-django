@@ -30,7 +30,7 @@ def postsign(request):
         us = authe.sign_in_with_email_and_password(email,passw)
         session_id = us['idToken']
         request.session['uid']=str(session_id)
-        return render(request,'core/welcome.html',{"e":email})
+        return render(request,'students/home.html',{"e":email})
     except:
         message = "Credenciais Inválidas."
         return render(request,'core/login.html',{"msg":message})
