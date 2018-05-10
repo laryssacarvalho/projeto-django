@@ -139,7 +139,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'studyPlanner', 'media')
 
 # Auth
 LOGIN_URL = '/conta/entrar/'
-LOGIN_REDIRECT_URL = '/alunos'
+LOGIN_REDIRECT_URL = '/home'
 LOGOUT_REDIRECT_URL = ''
 LOGOUT_URL = '/'
 

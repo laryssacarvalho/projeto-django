@@ -6,6 +6,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.urls import reverse_lazy
 from .forms import UserForm, PersonForm
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect
 
 def index(request):
     return render(request, 'core/index-agency.html', {'nbar' : 'inicio'})
@@ -13,11 +14,10 @@ def index(request):
 @login_required
 def home(request):
     if request.user.person.tipo == 'A':
-        redirect = '/alunos/'
+        red = '/alunos/'
     else:
-        redirect = '/professors/'    
-    return HttpResponseRedirect(
-        reverse(home, args=[request.user]))
+        red = '/professors'    
+    return redirect(red)
 
 def user_profile(request):
     return render(request, 'core/user_profile.html')

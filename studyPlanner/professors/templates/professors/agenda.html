@@ -1,18 +1,11 @@
-{% extends "students/header.html" %}
+{% extends "professors/header.html" %}
 {% load staticfiles %}
-
-
-	{% block head %}
-		<!-- <link href="{% static 'css/fullcalendar.css' %}" rel='stylesheet' /> -->
-		<!-- <link href="{% static 'css/fullcalendar.print.css' %}" rel='stylesheet' media='print' /> -->
-	{% endblock %}
-
 	{% block content %}			
 		<div class="row">
 			<div class="col-md-12">
 				<div class="card">
 					<div class="card-header" data-background-color="orange">
-						<h4 class="title">Março/2018</h4>						
+						<h4 class="title">{{ month }}/{{ year }}</h4>						
 					</div>
 					<div class="card-content">
 						<div id='wrap'>
@@ -69,7 +62,6 @@
 				
 				var calendar =  $('#calendar').fullCalendar({
 					header: {
-						//left: 'title',
 						center: 'agendaDay,month',
 						right: 'prev,next'
 					},
@@ -85,11 +77,6 @@
 						day: 'dddd M/d',  // Monday 9/7
 						agendaDay: 'dddd d'
 					},
-					/*titleFormat: {
-						month: 'MMMM yyyy', // September 2009
-						week: "MMMM yyyy", // September 2009
-						day: 'MMMM yyyy'                  // Tuesday, Sep 8, 2009
-					},*/
 					allDaySlot: false,
 					selectHelper: true,
 					select: function(start, end, allDay) {
@@ -185,12 +172,3 @@
 		</script>
 
 	{% endblock %}
-<!-- </head>
-
-<body>
-	<div id='wrap'>
-		<div id='calendar'></div>
-		<div style='clear:both'></div>
-	</div>
-</body>
-</html> -->

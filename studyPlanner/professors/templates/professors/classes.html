@@ -1,0 +1,50 @@
+{% extends "professors/header.html" %}
+
+{% block content %}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header" data-background-color="purple">
+                        <h4 class="title">Suas Turmas</h4>                        
+                    </div>
+                    <div class="card-content table-responsive"> 
+                        <table class="table table-hover">
+                            <thead class="text-warning">
+                                <th>Nome</th>                                
+                                <th>Código</th>
+                                <th>Sala</th>
+                                <th>Dia/Horário</th>
+                                <th>Opções</th>
+                            </thead>
+                            <tbody>
+                                {% for turma in turmas %}
+                                <tr>
+                                    <td>{{ turma.name }}</td>                                    
+                                    <td>{{ turma.code }}</td>
+                                    <td>{{ turma.room}}</td>
+                                    <td>{{ turma.weekDay}}/{{ turma.horario }}</td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Opções
+                                            <span class="caret"></span></button>
+                                            <ul class="dropdown-menu">
+                                              <li><a href="#">Ver Alunos</a></li>
+                                              <li><a href="{% url 'tarefa' %}">Criar Tarefa</a></li>                                              
+                                            </ul>
+                                          </div>
+                                    </td>
+                                </tr>     
+                                {% endfor %}                        
+                            </tbody>
+                        </table>                       
+                    </div>
+                </div>
+            </div>            
+        </div>        
+    </div>
+</div>
+
+{% endblock %}

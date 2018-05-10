@@ -1,0 +1,30 @@
+{% extends 'professors/header.html' %}
+{% block content %}
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header" data-background-color="purple">
+                        <h4 class="title">Criar Tarefa</h4>                        
+                    </div>
+                    <div class="card-content">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group label-floating">
+                                    <form method="POST" action="">{% csrf_token %}                                        
+                                        {{ form.as_p }}
+                                        <input type="submit" class="btn btn-primary pull-right" value="Salvar" />
+                                    </form>                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>            
+        </div>
+    </div>
+</div>
+
+{% endblock %}
