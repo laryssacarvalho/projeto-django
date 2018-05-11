@@ -1,5 +1,8 @@
 {% extends 'professors/header.html' %}
+{% load myfilters %}
+
 {% block content %}
+
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -9,7 +12,26 @@
                         <h4 class="title">Criar Tarefa</h4>                        
                     </div>
                     <div class="card-content">
-                        <div class="row">
+                        {% if message %}
+                            <div class="alert alert-success">
+                                {{ message }}
+                            </div>          
+                        {% endif %}
+                        <form method="POST" action="">{% csrf_token %}
+                            {% for field in form.visible_fields %}
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group label-floating">
+                                            {{ field.label_tag }}
+                                            {{ field | addclass:'form-control' }}                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                            <button type="submit" class="btn btn-primary pull-right">Salvar</button>
+                            <div class="clearfix"></div>
+                        </form>  
+                        {% comment %} <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group label-floating">
                                     <form method="POST" action="">{% csrf_token %}                                        
@@ -18,7 +40,7 @@
                                     </form>                                    
                                 </div>
                             </div>
-                        </div>
+                        </div> {% endcomment %}
                         <div class="clearfix"></div>
                     </div>
                 </div>

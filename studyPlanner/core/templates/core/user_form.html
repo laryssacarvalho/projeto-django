@@ -11,45 +11,22 @@
                         <h4 class="title">Editar Perfil</h4>                        
                     </div>
                     <div class="card-content">
+                        {% if message %}
+                            <div class="alert alert-success">
+                                {{ message }}
+                            </div>          
+                        {% endif %}              
                         <form method="POST" action="">{% csrf_token %}
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group label-floating">
-                                        {{ user_form.as_p }}
-                                        {{ person_form.as_p }}
+                            {% for field in user_form.visible_fields %}
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group label-floating">
+                                            {{ field.label_tag }}
+                                            {{ field | addclass:'form-control' }}                                            
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            {% comment %} <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">Email</label>                                        
-                                        {{ form.email|addclass:'form-control' }}                                        
-                                    </div>
-                                </div>
-                            </div>                            
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">Nome</label>
-                                        {{ form.firstName|addclass:'form-control' }}                                                                            
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">Sobrenome</label>
-                                        {{ form.lastName|addclass:'form-control' }}                                        
-                                    </div>
-                                </div>
-                            </div> {% endcomment %}
-                            {% comment %} <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">Senha</label>
-                                        <input type="password" class="form-control">
-                                    </div>
-                                </div>
-                            </div> {% endcomment %}
+                            {% endfor %}
                             <button type="submit" class="btn btn-primary pull-right">Salvar</button>
                             <div class="clearfix"></div>
                         </form>

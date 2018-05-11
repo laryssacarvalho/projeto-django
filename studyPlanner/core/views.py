@@ -8,12 +8,12 @@ from .forms import UserForm, PersonForm
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 
-def index(request):
-    return render(request, 'core/index-agency.html', {'nbar' : 'inicio'})
+# def index(request):
+#     return render(request, 'core/index-agency.html', {'nbar' : 'inicio'})
 
 @login_required
 def home(request):
-    if request.user.person.tipo == 'A':
+    if request.user.person.tipo == 'S':
         red = '/alunos/'
     else:
         red = '/professors'    
@@ -23,26 +23,29 @@ def user_profile(request):
     return render(request, 'core/user_profile.html')
 
 def create_profile(request):
-    if request.method == 'POST':
-        user_form = UserForm(request.POST, instance=request.user)
-        person_form = PersonForm(request.POST, instance=request.user.person)
-        if user_form.is_valid() and person_form.is_valid():
-            user_form.save()
-            person_form.save()
-            return render(request, 'core/user_profile.html', {})
-        else:
-            print('It is not working')
-    else:
-        user_form = UserForm(instance=request.user)
-        person_form = PersonForm(instance=request.user.person)
     if request.user.person.tipo == 'S':
         header = 'students/header.html'
     else:
         header = 'professors/header.html'
+    
+    if request.method == 'POST':
+        user_form = UserForm(request.POST, instance=request.user)
+        if user_form.is_valid():            
+            user_form.save()
+            context = {
+                'header' : header,
+                'user_form' : user_form,
+                'message' : 'Perfil editado com sucesso!'
+            }
+            return render(request, 'core/user_form.html', context)
+        else:
+            print('It is not working')
+    else:
+        user_form = UserForm(instance=request.user)
     context = {
         'header' : header,
-        'user_form' : user_form,
-        'person_form' : person_form
+        'user_form' : user_form
     }
+    
     return render(request, 'core/user_form.html', context)
     

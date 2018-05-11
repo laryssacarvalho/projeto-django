@@ -7,32 +7,35 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header" data-background-color="purple">
+                    <div class="card-header" data-background-color="green">
                         <h4 class="title">Suas Turmas</h4>                        
                     </div>
                     <div class="card-content table-responsive"> 
                         <table class="table table-hover">
                             <thead class="text-warning">
-                                <th>Nome</th>                                
-                                <th>Código</th>
-                                <th>Sala</th>
-                                <th>Dia/Horário</th>
-                                <th>Opções</th>
+                                <th class="col-md-1">Código</th>
+                                <th class="col-md-3">Nome</th>
+                                <th class="col-md-1">Sala</th>
+                                <th class="col-md-2">Dia/Horário</th>
+                                <th class="col-md-2">Qtd. Alunos</th>
+                                <th></th>
                             </thead>
                             <tbody>
                                 {% for turma in turmas %}
                                 <tr>
-                                    <td>{{ turma.name }}</td>                                    
                                     <td>{{ turma.code }}</td>
-                                    <td>{{ turma.room}}</td>
-                                    <td>{{ turma.weekDay}}/{{ turma.horario }}</td>
+                                    <td>{{ turma.name }}</td>
+                                    <td>{{ turma.room }}</td>                                    
+                                    <td>{{ turma.weekDay }}/{{ turma.horario }}</td>
+                                    <td>{{ turma.num }}</td>                                    
                                     <td>
-                                        <div class="dropdown">
-                                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Opções
+                                        <div class="dropdown pull-right">
+                                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" data-background-color="green">Opções
                                             <span class="caret"></span></button>
                                             <ul class="dropdown-menu">
-                                              <li><a href="#">Ver Alunos</a></li>
-                                              <li><a href="{% url 'tarefa' %}">Criar Tarefa</a></li>                                              
+                                              <li><a href="{% url 'alunos' id=turma.id %}">Ver Alunos</a></li>
+                                              <li><a href="{% url 'tarefa' %}">Criar Tarefa</a></li>
+                                              <li><a href="{% url 'tarefas' id=turma.id %}">Ver Tarefas</a></li>
                                             </ul>
                                           </div>
                                     </td>

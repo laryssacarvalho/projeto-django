@@ -1,13 +1,7 @@
 from django import forms
-from .models import Professor
+from studyPlanner.students.models import Student_Exam
 
-class professorForm(forms.ModelForm):
-    firstName = forms.CharField(label='Nome')
-    lastName = forms.CharField(label='Sobrenome')
-    username = forms.CharField(label='Usuário')    
-    email = forms.EmailField(label='Email')
-    #tipo = forms.TypedChoiceField(choices=Professor.TIPOS.choices(), coerce=str) 
+class Student_ExamForm(forms.ModelForm):
     class Meta:
-        model = Professor
-        fields = ('firstName', 'lastName', 'username', 'email')
-        #fields = ('firstName', 'lastName', 'username', 'email','tipo')
+        model = Student_Exam
+        fields = ('student', 'examClass','gradeMod1', 'gradeMod2', 'gradeSub')
