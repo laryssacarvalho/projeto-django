@@ -9,7 +9,7 @@
                 <div class="card">
                     <p>{{ message }}</p>
                     <div class="card-header" data-background-color="blue">
-                        <h4 class="title">{{ turma.name }}</h4>                        
+                        <h4 class="title">Alunos - {{ turma.name }} ({{ turma.code }})</h4>                        
                     </div>
                     <div class="card-content table-responsive"> 
                         <table class="table table-hover">
@@ -34,8 +34,9 @@
                                                 <button class="btn btn-primary dropdown-toggle" id="botao" data-background-color="blue" type="button" data-toggle="dropdown" data-background-color="green">Opções
                                                 <span class="caret"></span></button>
                                                 <ul class="dropdown-menu">
-                                                    <li><a  data-toggle="modal" data-target="#prova" data-aluno="{{ aluno }}" href="#">Alterar Nota de Prova</a></li>
-                                                    <li><a href="{% url 'tarefa' %}">Ver Entregas</a></li>
+                                                    {% comment %} <li><a  data-toggle="modal" data-target="#prova" data-aluno="{{ aluno }}" href="#">Alterar Nota de Prova</a></li> {% endcomment %}
+                                                    <li><a href="{% url 'nota' idTurma=turma.id idAluno=aluno.id %}">Alterar Nota de Prova</a></li>
+                                                    <li><a href="{% url 'tarefasAluno' idTurma=turma.id idAluno=aluno.id %}">Ver Entregas</a></li>
                                                 </ul>
                                             </div>
                                         </td>
@@ -49,35 +50,4 @@
         </div>        
     </div>
 </div>
-<!-- Modal -->
-<div id="prova" class="modal fade" role="dialog">
-        <div class="modal-dialog">      
-          <!-- Modal content-->
-          <div class="modal-content">
-                <div class="card">
-                    <div class="modal-header card-header" data-background-color="red">
-                        <h4 class="title">Alterar Nota de Prova</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p class="nome"></p>
-                        <p class="ra"></p>
-                        <form method="POST" action="">{% csrf_token %}                                        
-                            {{ grade_form.as_p }}
-                            <input type="submit" class="btn btn-primary pull-right" value="Salvar" />
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-info" data-dismiss="modal">Fechar</button>
-                    </div>
-                </div>
-          </div>
-      
-        </div>
-      </div>
 {% endblock %}
-
-<script>
-    $(function(){        
-        debugger;
-    });
-</script>

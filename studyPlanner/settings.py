@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'studyPlanner.professors',    
     'studyPlanner.core',
     'social_django',
-    'rest_framework'
+    'rest_framework',
+    'widget_tweaks'
     #'django_pdb'
 ]
 

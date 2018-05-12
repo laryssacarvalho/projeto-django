@@ -1,0 +1,45 @@
+{% extends "professors/header.html" %}
+
+{% block content %}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <p>{{ message }}</p>
+                    <div class="card-header" data-background-color="blue">
+                        <h4 class="title">Tarefas - {{ tarefas.student }} ({{ turma.code }})</h4>                        
+                    </div>
+                    <div class="card-content table-responsive"> 
+                        <table class="table table-hover">
+                            {% if tarefas %}                                                                
+                                <thead class="text-warning">
+                                    <th class="col-md-2">Tarefa</th>
+                                    <th class="col-md-2">Arquivo</th>
+                                    <th class="col-md-2">Nota</th>                                    
+                                    <th class="col-md-2">Ação</th>
+                                </thead>
+                                <tbody>
+                                    {% for tarefa in tarefas %}
+                                        <tr>
+                                            <td>{{ tarefa.task.name }}</td>
+                                            <td>{{ tarefa.grade }}</td>
+                                            <td>{{ tarefa.file }}</td>                                            
+                                            <td>                                        
+                                                <a class="btn btn-primary" href="{% url 'notaTarefa' id=tarefa.id %}" data-background-color="green">Alterar Nota</a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}                                                                                      
+                                </tbody> 
+                            {% else %}
+                                <tr>Não há nenhuma tarefa para este aluno</tr>
+                            {% endif %}                             
+                        </table>                       
+                    </div>
+                </div>
+            </div>            
+        </div>        
+    </div>
+</div>
+{% endblock %}

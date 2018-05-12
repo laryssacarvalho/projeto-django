@@ -17,7 +17,8 @@
                                 <th class="col-md-2">Tipo</th>
                                 <th class="col-md-2">Nome</th>                                
                                 <th class="col-md-2">Data de Vencimento</th>
-                                <th class="col-md-2">Arquivo</th>
+                                <th class="col-md-3">Arquivo</th>
+                                <th></th>                                
                             </thead>
                             <tbody>
                                 {% for tarefa in tarefas %}
@@ -26,6 +27,9 @@
                                         <td>{{ tarefa.name }}</td>
                                         <td>{{ tarefa.date }}</td>
                                         <td></td>
+                                        <td>                                        
+                                            <a class="btn btn-primary" href="{% url 'alunosTarefa' id=tarefa.id %}" data-background-color="green">Ver Alunos</a>
+                                        </td>
                                     </tr>
                                 {% endfor %}
                             </tbody>                            
@@ -36,35 +40,4 @@
         </div>        
     </div>
 </div>
-<!-- Modal -->
-<div id="prova" class="modal fade" role="dialog">
-        <div class="modal-dialog">      
-          <!-- Modal content-->
-          <div class="modal-content">
-                <div class="card">
-                    <div class="modal-header card-header" data-background-color="red">
-                        <h4 class="title">Alterar Nota de Prova</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p class="nome"></p>
-                        <p class="ra"></p>
-                        <form method="POST" action="">{% csrf_token %}                                        
-                            {{ grade_form.as_p }}
-                            <input type="submit" class="btn btn-primary pull-right" value="Salvar" />
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-info" data-dismiss="modal">Fechar</button>
-                    </div>
-                </div>
-          </div>
-      
-        </div>
-      </div>
 {% endblock %}
-
-<script>
-    $(function(){        
-        debugger;
-    });
-</script>

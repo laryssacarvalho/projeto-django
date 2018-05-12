@@ -35,7 +35,8 @@ def create_profile(request):
             context = {
                 'header' : header,
                 'user_form' : user_form,
-                'message' : 'Perfil editado com sucesso!'
+                'message' : 'Perfil editado com sucesso!',
+                'nbar' : 'perfil'
             }
             return render(request, 'core/user_form.html', context)
         else:
@@ -44,7 +45,8 @@ def create_profile(request):
         user_form = UserForm(instance=request.user)
     context = {
         'header' : header,
-        'user_form' : user_form
+        'user_form' : user_form,
+        'nbar' : 'perfil'
     }
     
     return render(request, 'core/user_form.html', context)

@@ -13,7 +13,7 @@ class Person(models.Model):
     tipo = models.CharField('Tipo de Usuário', max_length=10, choices=TIPO, default='S')    
     
     def __str__(self):
-        return self.user.username
+        return (self.user.first_name + ' ' + self.user.last_name + ' - ' + str(self.user.person.ra))
 
     def get_full_name(self):
         return str(self)
@@ -52,7 +52,7 @@ class Class(models.Model):
     horario = models.TimeField('Horário', default='', blank=True)
 
     def __str__(self):
-        return self.name
+        return (self.code + ' - ' + self.name)
     class Meta:
         verbose_name='Turma'
         verbose_name_plural = 'Turmas'
