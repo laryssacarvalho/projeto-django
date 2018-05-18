@@ -10,14 +10,13 @@
 
   firebase.initializeApp(config);
 
-  function loginWithGoogle(){
+  function loginWithGoogle(e){
+    e.preventDefault();
     var provider = new firebase.auth.GoogleAuthProvider();
-    // provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
 
     firebase.auth().signInWithPopup(provider).then(function(result) {
         var token = result.credential.accessToken;
         var user = result.user;
-        console.log("logou")
        window.location.href = 'http://127.0.1:8000/alunos';
         
     }).catch(function(error) {
@@ -31,7 +30,8 @@
 
   }
 
-  function loginWithFacebook(){
+  function loginWithFacebook(e){
+    e.preventDefault();
     var provider = new firebase.auth.FacebookAuthProvider();
     firebase.auth().signInWithPopup(provider).then(function(result) {
         var token = result.credential.accessToken;
