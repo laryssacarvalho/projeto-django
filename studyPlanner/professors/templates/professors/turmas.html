@@ -1,0 +1,45 @@
+{% extends "professors/header.html" %}
+
+{% block content %}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            {% for turma in turmas %}
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header" data-background-color="purple">
+                        <h4 class="title">{{ turma.name }}</h4>                        
+                    </div>
+                    <div class="card-content table-responsive"> 
+                        <table class="table table-hover">
+                            <thead class="text-warning">
+                                <th>Código</th>
+                                <th>Quantida de Alunos</th>
+                                <th>Sala</th>
+                                <th>Dia da semana</th>
+                                <th>Horário</th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{turma.code}}</td>
+                                    <td>{{turma.num}}</td>
+                                    <td>{{turma.room}}</td>
+                                    <td>{{turma.weekDay}}-FEIRA</td>
+                                    <td>{{turma.horario}}h</td>
+                                    <td><a href="{% url 'detalhe' id=turma.id %}">
+                                        <button data-background-color="purple">Ver Mais</button>
+                                        </a>
+                                    </td>
+                                </tr>                                
+                            </tbody>
+                        </table>                       
+                    </div>
+                </div>
+            </div>
+            {% endfor %}         
+        </div>
+    </div>
+</div>
+
+{% endblock %}

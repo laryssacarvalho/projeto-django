@@ -1,0 +1,19 @@
+flag
+email
+senha
+confirmar senha
+hasAuth
+
+
+1.novo usuario
+	se for por email e senha: pelo server, cria pelo firebase e vincula um user novo no banco
+	se for por facebook ou gmail:
+		se senha vazia, tentar autenticar pelo firebase
+
+obs: sempre verificar se já há no banco para retornar erro
+
+2. login
+	Pegar o email e autenticar pelo firebase e trazer os dados do banco dele
+	Verificar se o registro há true do campo hasAuth
+	Se sim, redirecionar para home com seus dados
+	Se nao, vai pra tela de erro

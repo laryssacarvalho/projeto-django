@@ -40,9 +40,10 @@ INSTALLED_APPS = [
     'studyPlanner.students',
     'studyPlanner.professors',    
     'studyPlanner.core',
-    'pyrebase'
-    # 'social_django'
-    ]
+    'pyrebase',
+    'rest_framework',
+    'widget_tweaks'
+]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -142,11 +143,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'studyPlanner', 'media')
 
 # Auth
-LOGIN_URL = '/conta/entrar/'
-LOGIN_REDIRECT_URL = '/alunos/'
+LOGIN_REDIRECT_URL = '/home'
 LOGOUT_REDIRECT_URL = ''
-LOGOUT_URL = '/core/'
-# AUTH_USER_MODEL = 'core.User'
+LOGOUT_URL = '/'
 
 # SOCIAL_AUTH_TWITTER_KEY = 'TaWqUme8ANODPOxJa3gqpRMyD'
 # SOCIAL_AUTH_TWITTER_SECRET = 'wuSF1ntEjOMbPj7I3vHn4NSQjcihXXdto7B2v5hJLz32tStWJr'

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+    <head>
+        <link href="{% static '/css/register.css' %}" rel="stylesheet" /> 
+        <script defer src="{% static '/js/register.js'%}"></script>            
+        <script defer src="{% static '/js/firebase-auth.js'%}"></script>            
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://www.gstatic.com/firebasejs/5.0.2/firebase.js"></script>
+    </head>
+    <body style="background-color: purple">
+        <div class="container">
+            <div class="login-container">
+                    <div id="output"></div>
+                    <div class="form-box">
+                            <form method="post">
+                                 
+                                <div class="form-group">
+                                    <label>E-mail:</label>
+                                    <input placeholder="E-mail" type="text" id="txtEmail"></input>
+                                </div>
+
+                                 <div class="form-group">
+                                    <label>Senha:</label>
+                                    <input placeholder="Senha" type="password" id="txtPassword"></input>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Confirmar Senha:</label>
+                                    <input placeholder="Confirmar Senha" type="password" id="txtConfirmPassword"></input>
+                                </div>
+                                <button class="btn btn-primary" id="btnRegister" type="button" onclick="registerUser()">Registrar</button>
+                                <br/>
+                                <br/>
+                                <button class="btn btn-primary" id="btnLogin" type="button" onclick="redirectLogin()">Voltar para o Login</button>
+
+                                  
+                            </form>     
+
+                    </div>
+                    <br/>
+                </div>
+                
+        </div>
+    </body>
+</html>

@@ -1,0 +1,81 @@
+body{background-color: purple;}
+html,body{
+    position: relative;
+    height: 100%;
+}
+
+#btnRegister{
+background-color:#e6005c;
+border-radius:6px;
+border: 2px solid #e6005c;
+width:220px;
+font-weight:bold;
+}
+
+#btnLogin{
+background-color:#3399ff;
+border-radius:6px;
+border: 2px solid #3399ff;
+width:220px;
+font-weight:bold;
+}
+
+
+#btnRegister:hover{
+    opacity:0.85;
+}
+
+
+#btnLogin:hover{
+    opacity:0.85;
+}
+
+.login-container{
+    position: relative;
+    width: 300px;
+    margin: 80px auto;
+    padding: 20px 40px 40px;
+    text-align: center;
+    background: #fff;
+    border: 1px solid #ccc;
+}
+
+
+.login-container::before,.login-container::after{
+    content: "";
+    position: absolute;
+    width: 100%;height: 100%;
+    top: 3.5px;left: 0;
+    background: #fff;
+    z-index: -1;
+    -webkit-transform: rotateZ(4deg);
+    -moz-transform: rotateZ(4deg);
+    -ms-transform: rotateZ(4deg);
+    border: 1px solid #ccc;
+}
+
+.login-container::after{
+    top: 5px;
+    z-index: -2;
+    -webkit-transform: rotateZ(-2deg);
+     -moz-transform: rotateZ(-2deg);
+      -ms-transform: rotateZ(-2deg);
+
+}
+
+.form-box input{
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    height:40px;
+    border: 1px solid #ccc;;
+    background: #fafafa;
+    transition:0.2s ease-in-out;
+    border-radius:5px;
+}
+
+.form-box input:focus{
+    outline: 0;
+    background: #eee;
+}
+

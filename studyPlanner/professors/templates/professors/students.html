@@ -1,0 +1,53 @@
+{% extends "professors/header.html" %}
+
+{% block content %}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <p>{{ message }}</p>
+                    <div class="card-header" data-background-color="blue">
+                        <h4 class="title">Alunos - {{ turma.name }} ({{ turma.code }})</h4>                        
+                    </div>
+                    <div class="card-content table-responsive"> 
+                        <table class="table table-hover">
+                            <thead class="text-warning">
+                                <th class="col-md-2">Aluno</th>                                
+                                <th class="col-md-2">RA</th>
+                                <th class="col-md-2">Módulo 1</th>
+                                <th class="col-md-2">Módulo 2</th>
+                                <th class="col-md-2">Média Final</th>
+                                <th class="col-md-2"></th>
+                            </thead>
+                            <tbody>
+                                {% for aluno in alunos %}
+                                    <tr>
+                                        <td>{{ aluno.user.first_name }} {{ aluno.user.last_name }}</td>
+                                        <td>{{ aluno.user.person.ra }}</td>
+                                        <td>{{ aluno.gradeMod1 }}</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>
+                                            <div class="dropdown pull-right">
+                                                <button class="btn btn-primary dropdown-toggle" id="botao" data-background-color="blue" type="button" data-toggle="dropdown" data-background-color="green">Opções
+                                                <span class="caret"></span></button>
+                                                <ul class="dropdown-menu">
+                                                    {% comment %} <li><a  data-toggle="modal" data-target="#prova" data-aluno="{{ aluno }}" href="#">Alterar Nota de Prova</a></li> {% endcomment %}
+                                                    <li><a href="{% url 'nota' idTurma=turma.id idAluno=aluno.id %}">Alterar Nota de Prova</a></li>
+                                                    <li><a href="{% url 'tarefasAluno' idTurma=turma.id idAluno=aluno.id %}">Ver Entregas</a></li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>                            
+                        </table>                       
+                    </div>
+                </div>
+            </div>            
+        </div>        
+    </div>
+</div>
+{% endblock %}

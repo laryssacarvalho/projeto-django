@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls import url
 from django.shortcuts import redirect
-from django.conf import settings
+from django.conf import settings    
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
 from studyPlanner.core.views import signIn
@@ -27,12 +27,18 @@ from studyPlanner.core.views import logout
 
 urlpatterns = [
     path('admin/', admin.site.urls),    
+    path('professors/', include('studyPlanner.professors.urls')),   
     path('alunos/', include('studyPlanner.students.urls')),   
     path('', include('studyPlanner.core.urls')),
     url(r'^$',signIn),
     url(r'^postsign/',postsign),
-    url(r'^logout/',logout,name="log")
+    url(r'^logout/',logout,name="log"),
     # url(r'^oauth/', include('social_django.urls', namespace='social')),
     # url(r'auth-social/',include('social_django.urls',namespace='social')) 
-    #path('', include('studyPlanner.professors.urls', namespace='professors')),    
+    # path('', include('studyPlanner.professors.urls', namespace='professors')),    
+    url(r'^oauth/', include('social_django.urls', namespace='social')),
+    path('professors', include('studyPlanner.professors.urls')),
+    path('api-auth/', include('rest_framework.urls')),
+    path('api/', include('studyPlanner.rest.urls'))
+
 ]

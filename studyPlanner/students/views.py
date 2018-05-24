@@ -3,7 +3,6 @@ from django.http import HttpResponse
 from studyPlanner.core.models import Task, Class, User
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
-from .models import Student
 from .models import Task_Student, Student_Exam
 from django.db import connection
 

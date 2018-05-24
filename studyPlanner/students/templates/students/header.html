@@ -44,7 +44,7 @@
                         </a>
                     </li>
                     <li class="{% if nbar == 'perfil' %}active{% endif %}">
-                        <a href="{% url 'user_update' pk=2 %}">
+                        <a href="{% url 'editar' %}">
                             <i class="material-icons">person</i>
                             <p>Perfil</p>
                         </a>
@@ -68,7 +68,7 @@
                         </a>
                     </li>                    
                     <li>
-                        <a href="">
+                        <a href="{% url 'logout' %}">
                             <i class="material-icons text-gray">input</i>
                             <p>Sair</p>
                         </a>
