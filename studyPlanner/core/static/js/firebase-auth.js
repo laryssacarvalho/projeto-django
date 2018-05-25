@@ -10,17 +10,19 @@ var config = {
 
   firebase.initializeApp(config);
 
-  function createFirebaseUser(email,password){
+  function createFirebaseUser(email,password,username){
     firebase.auth().createUserWithEmailAndPassword(email, password)
     .then(function(){
       
       $.ajax({
         url: '/createUser/',
         data: {
+          'email':email,
+          'password':password,
+          'username':username
         },
         dataType: 'json',
         success: function (data) {
-          alert("deu certo")
         }
       });
 

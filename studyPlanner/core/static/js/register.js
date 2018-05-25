@@ -1,11 +1,10 @@
 function registerUser(){
     var email = $("#txtEmail").val()
     var password = $("#txtPassword").val()
+    var username = $("#txtUser").val()
 
     //fazer validação da senha
-    console.log(email)
-    console.log(password)
-    createFirebaseUser(email,password)
+    createFirebaseUser(email,password, username)
 }
 
 function redirectUser(){

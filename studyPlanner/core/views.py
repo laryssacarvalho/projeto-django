@@ -5,6 +5,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
 from django.urls import reverse_lazy
 from django.contrib import auth
+from django.contrib.auth.models import User
 import pyrebase
 
 config = {
@@ -25,8 +26,13 @@ def signIn(request):
 
 
 def createUser(request):
-    print('deu certo')
-    return render(request,'core/home.html')
+    email = request.GET.get('email', None)
+    password = request.GET.get('password',None)
+    username = request.GET.get('username', None)
+    user = User.objects.create_user(username=username,
+                                 email=email,
+                                 password=password)
+    return render(request,'core/login.html')
 
 def register(request):
     return render(request,'core/register.html')
@@ -36,6 +42,7 @@ def postsign(request):
     passw = request.POST.get('pass')
     try:
         us = authe.sign_in_with_email_and_password(email,passw)
+        usemail = us['email']
         session_id = us['idToken']
         request.session['uid']=str(session_id)
         return render(request,'students/home.html',{"e":email})
