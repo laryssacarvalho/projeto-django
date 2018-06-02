@@ -33,7 +33,7 @@
             <div class="sidebar-wrapper">
                 <ul class="nav">
                     <li class="{% if nbar == 'inicio' %}active{% endif %}">
-                        <a href="{% url 'home' %}">
+                        <a href="{% url 'homeProfessor' %}">
                             <i class="material-icons">home</i>
                             <p>Inicio</p>
                         </a>
@@ -44,8 +44,8 @@
                             <p>Perfil</p>
                         </a>
                     </li>
-                    <li class="{% if nbar == 'agenda' %}active{% endif %}">
-                        <a href="{% url 'agenda' %}">
+                    <li class="{% if nbar == 'schedule' %}active{% endif %}">
+                        <a href="{% url 'schedule' %}">
                             <i class="material-icons">date_range</i>
                             <p>Agenda</p>
                         </a>

@@ -14,7 +14,7 @@ from django.shortcuts import redirect
 @login_required
 def home(request):
     if request.user.person.tipo == 'S':
-        red = '/alunos/'
+        red = '/alunos'
     else:
         red = '/professors'    
     return redirect(red)

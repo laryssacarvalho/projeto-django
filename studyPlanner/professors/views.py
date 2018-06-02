@@ -2,13 +2,14 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.db.models import Avg
 from studyPlanner.core.models import Task, Class, User
-from studyPlanner.students.models import Student_Exam, Task_Student
+from studyPlanner.students.models import Student_Exam, Task_Student, Task
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.db import connection
-import datetime
+from datetime import date, datetime
 from time import strftime, gmtime
 from .forms import Student_ExamForm, Task_StudentForm
+import calendar
 
 def home(request):    
     context = {
@@ -16,13 +17,39 @@ def home(request):
     }
     return render(request, 'professors/home.html', context)
 
-def agenda(request):    
+
+# descobrir como usar o debugger no windows
+    # fazer esse select
+    # select * from Task t join Class c on t.ClassId = c.ClassId join Professor p on c.ProfessorId = p.ProfessorId where t.date.month = getMonth()
+    # task.where(i => i.Class.professor = id)
+def agenda(request):   
+    today = datetime.today()
+    tarefas = Task.objects.all()
+
     context = {
         'nbar' : 'agenda',
-        'month' : strftime("%B",gmtime()),
-        'year' : strftime("%Y",gmtime())
+        'month': calendar.month_name[today.month],
+        'year': today.year,
+        'tarefas' : tarefas      
     }
     return render(request, 'professors/agenda.html', context)
+
+# def agenda(request, id):
+#     today = datetime.today()
+#     turmas = Class.objects.filter(professor.id = id)
+#     tarefas = []
+
+#     for i in turmas:
+#         tarefas_turma = Task.objects.filter(date.year = today.year, date.year = today.month, taskClass.id = i.id)
+#         tarefas.add(tarefas_turma)
+
+#     context = {
+#         'nbar' : 'agenda',
+#         'month': calendar.month_name[today.month],
+#         'year': today.year,
+#         'tarefas' : tarefas      
+#     }
+#     return render(request, 'professors/agenda.html', context) 
 
 class TaskCreate(CreateView):
     model = Task
@@ -129,7 +156,6 @@ def nota_tarefa(request, id):
         'grade_task_form' : grade_task_form       
     }
     return render(request, 'professors/grade_task_form.html', context)  
-
 
 def tarefas_aluno(request, idTurma, idAluno):    
     turma = Class.objects.get(id = idTurma)
