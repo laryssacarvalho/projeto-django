@@ -1,0 +1,53 @@
+{% extends "professors/header.html" %}
+
+{% block content %}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header" data-background-color="green">
+                        <h4 class="title">Suas Turmas</h4>                        
+                    </div>
+                    <div class="card-content table-responsive"> 
+                        <table class="table table-hover">
+                            <thead class="text-warning">
+                                <th class="col-md-1">Código</th>
+                                <th class="col-md-3">Nome</th>
+                                <th class="col-md-1">Sala</th>
+                                <th class="col-md-2">Dia/Horário</th>
+                                <th class="col-md-2">Qtd. Alunos</th>
+                                <th></th>
+                            </thead>
+                            <tbody>
+                                {% for turma in turmas %}
+                                <tr>
+                                    <td>{{ turma.code }}</td>
+                                    <td>{{ turma.name }}</td>
+                                    <td>{{ turma.room }}</td>                                    
+                                    <td>{{ turma.weekDay }}/{{ turma.horario }}</td>
+                                    <td>{{ turma.num }}</td>                                    
+                                    <td>
+                                        <div class="dropdown pull-right">
+                                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" data-background-color="green">Opções
+                                            <span class="caret"></span></button>
+                                            <ul class="dropdown-menu">
+                                              <li><a href="{% url 'alunos' id=turma.id %}">Ver Alunos</a></li>
+                                              <li><a href="{% url 'tarefa' %}">Criar Tarefa</a></li>
+                                              <li><a href="{% url 'tarefas' id=turma.id %}">Ver Tarefas</a></li>
+                                            </ul>
+                                          </div>
+                                    </td>
+                                </tr>     
+                                {% endfor %}                        
+                            </tbody>
+                        </table>                       
+                    </div>
+                </div>
+            </div>            
+        </div>        
+    </div>
+</div>
+
+{% endblock %}

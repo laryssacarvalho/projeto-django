@@ -1,0 +1,41 @@
+
+{% extends "professors/header.html" %}
+{% load myfilters %}
+{% block content %}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header" data-background-color="purple">
+                        <h4 class="title">Editar Perfil</h4>                        
+                    </div>
+                    <div class="card-content">
+                        {% if message %}
+                            <div class="alert alert-success">
+                                {{ message }}
+                            </div>          
+                        {% endif %}              
+                        <form method="POST" action="">{% csrf_token %}
+                            {% for field in user_form.visible_fields %}
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group label-floating">
+                                            {{ field.label_tag }}
+                                            {{ field | addclass:'form-control' }}                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                            <button type="submit" class="btn btn-primary pull-right">Salvar</button>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>            
+        </div>
+    </div>
+</div>
+
+{% endblock %}

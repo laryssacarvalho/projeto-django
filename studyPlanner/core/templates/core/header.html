@@ -33,12 +33,12 @@
         Tip 2: you can also add an image using data-image tag
     -->
             <div class="logo">
-                <a href="{% url 'home' %}"><img src="{% static 'img/logo1.png' %}" width="245px"/></a>                
+                <a href="{% url 'index' %}"><img src="{% static 'img/logo1.png' %}" width="245px"/></a>                
             </div>
             <div class="sidebar-wrapper">
                 <ul class="nav">
                     <li class="{% if nbar == 'inicio' %}active{% endif %}">
-                        <a href="{% url 'home' %}">
+                        <a href="{% url 'index' %}">
                             <i class="material-icons">home</i>
                             <p>Inicio</p>
                         </a>
@@ -69,7 +69,7 @@
                     </li>                    
                     <li>
                         <a href="{% url 'logout' %}">
-                            <i class="material-icons text-gray">input</i>
+                            <i class="material-icons text-gray">input</i>                            
                             <p>Sair</p>
                         </a>
                     </li>

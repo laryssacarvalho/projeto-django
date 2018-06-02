@@ -26,7 +26,7 @@ SECRET_KEY = '%9jhp8-k1migx^jrnjhb_&3paypse*dxomy!%nm^*$ts1i5p$3'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'laryssacarvalho.pythonanywhere.com', 'study-planner-facens-web.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'laryssacarvalho.pythonanywhere.com', 'study-planner-facens-web.herokuapp.com', 'localhost']
 
 
 # Application definition
@@ -41,6 +41,10 @@ INSTALLED_APPS = [
     'studyPlanner.students',
     'studyPlanner.professors',    
     'studyPlanner.core',
+    'social_django',
+    'rest_framework',
+    'widget_tweaks'
+    #'django_pdb'
 ]
 
 MIDDLEWARE = [
@@ -51,8 +55,8 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware', 
-]
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware']
 
 # MIDDLEWARE_CLASSES = (
 #     # Simplified static file serving.
@@ -73,10 +77,21 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
+            'libraries':{
+                'myfilters': 'studyPlanner.students.templatetags.myfilters',
+            }
         },
     },
 ]
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.twitter.TwitterOAuth',
+    'social_core.backends.facebook.FacebookOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 WSGI_APPLICATION = 'studyPlanner.wsgi.application'
 
@@ -134,14 +149,11 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') #static
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'studyPlanner', 'media')
 
-# Extra places for collectstatic to find static files.
-# STATICFILES_DIRS = [
-#     os.path.join(BASE_DIR, 'static'),
-# ]
+# Auth
+LOGIN_REDIRECT_URL = '/home'
+LOGOUT_REDIRECT_URL = ''
+LOGOUT_URL = '/'
 
-
-# Simplified static file serving.
-# https://warehouse.python.org/project/whitenoise/
-#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
+SOCIAL_AUTH_TWITTER_KEY = 'TaWqUme8ANODPOxJa3gqpRMyD'
+SOCIAL_AUTH_TWITTER_SECRET = 'wuSF1ntEjOMbPj7I3vHn4NSQjcihXXdto7B2v5hJLz32tStWJr'
 
