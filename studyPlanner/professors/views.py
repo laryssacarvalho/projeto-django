@@ -11,17 +11,30 @@ from time import strftime, gmtime
 from .forms import Student_ExamForm, Task_StudentForm
 import calendar
 
-def home(request):    
+
+
+def home(request):   
+    name = request.user
+    tarefas = Task.objects.all()
+    tasks = len(tarefas)
+    aulas = Class.objects.all()
+    classes = len(aulas)
+    students = 0
+
+    for var in aulas:
+        students += numAlunos(var.id)
+
     context = {
-        'nbar' : 'inicio'
+        'nbar' : 'inicio',
+        'name' : name,
+        'tarefas': tarefas,
+        'tasks': tasks,
+        'classes': classes,
+        'students': students
     }
     return render(request, 'professors/home.html', context)
 
 
-# descobrir como usar o debugger no windows
-    # fazer esse select
-    # select * from Task t join Class c on t.ClassId = c.ClassId join Professor p on c.ProfessorId = p.ProfessorId where t.date.month = getMonth()
-    # task.where(i => i.Class.professor = id)
 def agenda(request):   
     today = datetime.today()
     tarefas = Task.objects.all()
@@ -33,23 +46,6 @@ def agenda(request):
         'tarefas' : tarefas      
     }
     return render(request, 'professors/agenda.html', context)
-
-# def agenda(request, id):
-#     today = datetime.today()
-#     turmas = Class.objects.filter(professor.id = id)
-#     tarefas = []
-
-#     for i in turmas:
-#         tarefas_turma = Task.objects.filter(date.year = today.year, date.year = today.month, taskClass.id = i.id)
-#         tarefas.add(tarefas_turma)
-
-#     context = {
-#         'nbar' : 'agenda',
-#         'month': calendar.month_name[today.month],
-#         'year': today.year,
-#         'tarefas' : tarefas      
-#     }
-#     return render(request, 'professors/agenda.html', context) 
 
 class TaskCreate(CreateView):
     model = Task
@@ -71,9 +67,6 @@ def turmas(request):
     return render(request, 'professors/classes.html', context)
 
 def alunos(request, id):
-    # calcular as notas de cada módulo 
-    # Módulo = (médias das entregas do aluno)*0.1 + (prova do módulo)*0.9
-    # Média Final = médias dos módulos
     turma = Class.objects.get(id = id)
     alunos = Class.objects.filter(id = id).get().students.all()    
     for aluno in alunos:
@@ -81,6 +74,7 @@ def alunos(request, id):
         aluno.gradeMod1 = alunoNotas.gradeMod1
         aluno.gradeMod2 = alunoNotas.gradeMod2
         aluno.gradeSub = alunoNotas.gradeSub
+        aluno.average = (aluno.gradeMod1 + aluno.gradeMod2)/2
 
     context = {
         'nbar' : 'turmas',        
@@ -198,17 +192,51 @@ def tarefas(request, id):
     }
     return render(request, 'professors/tasks.html', context)    
 
-def getAverageCR():
-    turmas = Class.objects.all()
-    cr = 0.0
-    avg = 0.0
-    for t in turmas:
-        alunos = Class.objects.filter(id = t.id).get().students.all()
-        alunos.aggregate(avg = Avg('cr'))
-        cr = cr + avg
-    return (cr)
 
 def numAlunos(id):
-    alunos = Class.objects.filter(id = id).get().students
-    return alunos
+    alunos = Class.objects.filter(id = id).get().students.all()
+    return len(alunos)
+
+
+
+
+
+
+
+# def agenda(request, id):
+#     today = datetime.today()
+#     turmas = Class.objects.filter(professor.id = id)
+#     tarefas = []
+
+#     for i in turmas:
+#         tarefas_turma = Task.objects.filter(date.year = today.year, date.year = today.month, taskClass.id = i.id)
+#         tarefas.add(tarefas_turma)
+
+#     context = {
+#         'nbar' : 'agenda',
+#         'month': calendar.month_name[today.month],
+#         'year': today.year,
+#         'tarefas' : tarefas      
+#     }
+#     return render(request, 'professors/agenda.html', context) 
+
+# def alunos(request, id):
+#     turma = Class.objects.get(id = id)
+#     alunos = Class.objects.filter(id = id).get().students.all()    
+#     context = {
+#         'nbar' : 'turmas',        
+#         'turma' : turma,
+#         'alunos' : alunos
+#     }
+#     return render(request, 'professors/students.html', context)
+
+# def getAverageCR():
+#     turmas = Class.objects.all()
+#     cr = 0.0
+#     avg = 0.0
+#     for t in turmas:
+#         alunos = Class.objects.filter(id = t.id).get().students.all()
+#         alunos.aggregate(avg = Avg('cr'))
+#         cr = cr + avg
+#     return (cr)
 
