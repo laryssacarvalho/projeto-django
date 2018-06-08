@@ -22,7 +22,7 @@ def home(request):
     students = 0
 
     for var in aulas:
-        students += numAlunos(var.id)
+        students += qtdAlunos(var.id)
 
     context = {
         'nbar' : 'inicio',
@@ -194,6 +194,10 @@ def tarefas(request, id):
 
 
 def numAlunos(id):
+    alunos = Class.objects.filter(id = id).get().students
+    return alunos
+
+def qtdAlunos(id):
     alunos = Class.objects.filter(id = id).get().students.all()
     return len(alunos)
 
