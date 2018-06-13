@@ -20,7 +20,14 @@ def home(request):
     return redirect(red)
 
 def user_profile(request):
-    return render(request, 'core/user_profile.html')
+    if request.user.person.tipo == 'S':
+        header = 'students/header.html'
+    else:
+        header = 'professors/header.html'
+    context = {
+                'header' : header
+            }
+    return render(request, 'core/user_profile.html',context)
 
 def create_profile(request):
     if request.user.person.tipo == 'S':

@@ -20,6 +20,7 @@ def home(request):
     aulas = Class.objects.all()
     classes = len(aulas)
     students = 0
+    today = datetime.today()
 
     for var in aulas:
         students += qtdAlunos(var.id)
@@ -30,7 +31,8 @@ def home(request):
         'tarefas': tarefas,
         'tasks': tasks,
         'classes': classes,
-        'students': students
+        'students': students,
+        'month': calendar.month_name[today.month]
     }
     return render(request, 'professors/home.html', context)
 

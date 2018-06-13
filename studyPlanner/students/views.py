@@ -8,9 +8,8 @@ from django.db import connection
 from datetime import date, datetime
 import calendar
 from django.contrib.auth.models import User
+from studyPlanner.students.models import Student_Exam, Task_Student, Task
 
-# def agenda(request):
-#     return render(request, 'students/agenda.html', {'nbar' : 'agenda'})
 
 def agenda(request):   
     today = datetime.today()
@@ -32,16 +31,35 @@ def notas(request):
     }
     return render(request, 'students/notas.html', context)
 
-def entregas(request):
+def entregas(request):   
+    tlist = Class.objects.get().tasks.all()       
     context = {
-        'nbar' : 'entregas'    
+        'tarefas': tlist
     }
     return render(request, 'students/entregas.html', context)
 
+def numAlunos(id):
+    alunos = Class.objects.filter(id = id).get().students
+    return alunos
+
 def home(request):
+
+    name = request.user
+    id = request.user.id
+    tarefas = Task.objects.all()
+    tasks = len(tarefas)
+    aulas = Class.objects.all()
+    classes = len(aulas)
+    today = datetime.today()
+
     context = {
-        'nbar' : 'inicio'
-        #'cr' : User.
+        'nbar' : 'inicio',
+        'name' : name,
+        'tarefas': tarefas,
+        'tasks': tasks,
+        'classes': classes,
+        'id': id,
+        'month': calendar.month_name[today.month]
     }
     return render(request, 'students/home.html', context)
     
