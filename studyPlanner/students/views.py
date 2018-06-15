@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from studyPlanner.core.models import Task, Class, User
+from studyPlanner.core.models import Task, Class, User, Person
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from .models import Task_Student, Student_Exam
@@ -33,8 +33,17 @@ def notas(request):
     return render(request, 'students/notas.html', context)
 
 def entregas(request):
+    id = request.user.id
+    turmas = User.objects.filter(id = id).get().person.classes_student.all()
+    for turma in turmas:
+        entregas = turma.tasks.all()
+        turma.entregas = entregas
+    
+
+    
     context = {
-        'nbar' : 'entregas'    
+        'nbar' : 'entregas',
+        'turmas' : turmas
     }
     return render(request, 'students/entregas.html', context)
 
