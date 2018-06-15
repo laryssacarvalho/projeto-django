@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'social_django',
     'rest_framework',
     'widget_tweaks'
-    #'django_pdb'
 ]
 
 MIDDLEWARE = [
