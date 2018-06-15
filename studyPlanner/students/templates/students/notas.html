@@ -13,17 +13,15 @@
                     <div class="card-content table-responsive"> 
                         <table class="table table-hover">
                             <thead class="text-warning">
-                                <th>Cálculo I</th>
-                                <th>Física I</th>
-                                <th>Química</th>
-                                <th>Algoritmos e Programação</th>
+                                {% for turma in turmas %}
+                                    <th>{{ turma.name }}</th>                                
+                                {% endfor %}
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>9,0</td>
-                                    <td>5,5</td>
-                                    <td>7,0</td>
-                                    <td>6,5</td>
+                                    {% for turma in turmas %}
+                                        <td>{{ turma.notas.gradeMod1 }}</td>
+                                    {% endfor %}
                                 </tr>                                
                             </tbody>
                         </table>                       
@@ -40,17 +38,15 @@
                     <div class="card-content table-responsive"> 
                         <table class="table table-hover">
                             <thead class="text-warning">
-                                <th>Cálculo I</th>
-                                <th>Física I</th>
-                                <th>Química</th>
-                                <th>Algoritmos e Programação</th>
+                                {% for turma in turmas %}
+                                    <th>{{ turma.name }}</th>                                
+                                {% endfor %}
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>9,0</td>
-                                    <td>5,5</td>
-                                    <td>7,0</td>
-                                    <td>6,5</td>
+                                    {% for turma in turmas %}
+                                        <td>{{ turma.notas.gradeMod2 }}</td>
+                                    {% endfor %}
                                 </tr>                                
                             </tbody>
                         </table>                       
@@ -67,17 +63,15 @@
                     <div class="card-content table-responsive"> 
                         <table class="table table-hover">
                             <thead class="text-warning">
-                                <th>Cálculo I</th>
-                                <th>Física I</th>
-                                <th>Química</th>
-                                <th>Algoritmos e Programação</th>
+                                {% for turma in turmas %}
+                                    <th>{{ turma.name }}</th>                                
+                                {% endfor %}
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>9,0</td>
-                                    <td>5,5</td>
-                                    <td>7,0</td>
-                                    <td>6,5</td>
+                                    {% for turma in turmas %}
+                                        <td>{{ turma.notas.final }}</td>
+                                    {% endfor %}
                                 </tr>                                
                             </tbody>
                         </table>                       

@@ -24,22 +24,33 @@ def agenda(request):
     return render(request, 'students/agenda.html', context)
 
 def notas(request):
+    id = request.user.id
+    try:
+        turmas = User.objects.filter(id = id).get().person.classes_student.all()
+        for turma in turmas:
+            notas = Student_Exam.objects.filter(examClass_id = turma.id, student_id = id).get()        
+            notas.final = (notas.gradeMod1*0.4) + (notas.gradeMod2*0.6)
+            turma.notas = notas
+    except Student_Exam.DoesNotExist:
+        turmas = False
+
     classes = Task.objects.filter().all()
     context = {
-        'nbar' : 'notas'
+        'nbar' : 'notas',
+        'turmas' : turmas
         # 'grades' : grades
     }
     return render(request, 'students/notas.html', context)
 
 def entregas(request):
     id = request.user.id
-    turmas = User.objects.filter(id = id).get().person.classes_student.all()
-    for turma in turmas:
-        entregas = turma.tasks.all()
-        turma.entregas = entregas
-    
-
-    
+    try:
+        turmas = User.objects.filter(id = id).get().person.classes_student.all()
+        for turma in turmas:
+            entregas = turma.tasks.all()
+            turma.entregas = entregas    
+    except Class.DoesNotExist:
+        turmas = False
     context = {
         'nbar' : 'entregas',
         'turmas' : turmas
